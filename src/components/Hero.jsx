@@ -1,15 +1,14 @@
 function Hero() {
     return (
-        <main className="relative flex-grow bg-black overflow-hidden">
-
-        <div className="absolute botto-0 left-0 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-600/30 rounded-full blur-3xl"></div>
+        <main className="relative flex-grow bg-black overflow-hidden">    
+        <div className="absolute bottom-0 left-0 w-80 h-36 bg-purple-600/30 blur-3xl"></div>
+        <div className="absolute top-28 right-0 w-80 h-36 bg-pink-600/30 blur-3xl"></div>
         <div className="container mx-auto px-6 py-16">
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            <span className="block">Accelerating</span>
-            <span className="block">The Future With</span>
-            <span className="block">Cutting-edge Solutions</span>
+            <span className="block pb-5">Accelerating</span>
+            <span className="block pb-5">The Future With</span>
+            <span className="block pb-5">Cutting-edge Solutions</span>
             </h1>            
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             From concept to product, we make it happen
