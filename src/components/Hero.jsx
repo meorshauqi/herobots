@@ -10,7 +10,7 @@ function Hero() {
             <span className="block pb-5">The Future With</span>
             <span className="block pb-5">Cutting-edge Solutions</span>
             </h1>            
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             From concept to product, we make it happen
             </p>
           </div>
