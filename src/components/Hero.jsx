@@ -1,8 +1,8 @@
 function Hero() {
     return (
         <main className="relative flex-grow bg-black overflow-hidden">    
-        <div className="absolute bottom-0 left-0 w-80 h-36 bg-purple-600/30 blur-3xl"></div>
-        <div className="absolute top-28 right-0 w-80 h-36 bg-pink-600/30 blur-3xl"></div>
+        {/* <div className="absolute bottom-0 left-0 w-80 h-36 bg-purple-600/30 blur-3xl"></div>
+        <div className="absolute top-28 right-0 w-80 h-36 bg-pink-600/30 blur-3xl"></div> */}
         <div className="container mx-auto px-6 py-16">
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
