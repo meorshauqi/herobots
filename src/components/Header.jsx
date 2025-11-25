@@ -1,15 +1,17 @@
+import herobotsLogo from '../assets/logo/Herobots-Logo-2025.png';
+
 function Header() {
   return (
     <header className="bg-black">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center gap-10">
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">
-                H
-              </span>
-            </div>
-            <span className="text-2xl font-bold text-white tracking-tight">
+            <img 
+              src={herobotsLogo} 
+              alt="HeroBots Logo" 
+              className="h-10 w-auto"
+            />
+            <span className="text-xl font-medium text-white tracking-tight">
               HeroBots
             </span>
           </div>

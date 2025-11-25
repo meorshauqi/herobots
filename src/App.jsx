@@ -4,6 +4,7 @@ import './App.css'
 import Hero from './components/Hero'
 import Showcase from './components/Showcase'
 import About from './components/About'
+import Products from './components/Products'
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <Showcase />
       <About />
+      <Products />
       <Footer />
     </div>
   )

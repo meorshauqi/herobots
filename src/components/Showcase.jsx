@@ -1,4 +1,13 @@
 import { useState } from 'react';
+import smartPatrolling from '../assets/services/smart-patrolling.png';
+import licensePlate from '../assets/services/license-plate-recognition.png';
+import visitorManagement from '../assets/services/visitor-management-system.png';
+import aiSecurity from '../assets/services/ai-security-serveillance.png';
+import onnsites from '../assets/services/onnsites.png';
+import softwareDev from '../assets/services/software-development.webp';
+import webApp from '../assets/services/web-app.jpg';
+import mobileApp from '../assets/services/mobile-app.webp';
+import aiIntegration from '../assets/services/ai-integration.jpg';
 
 function Showcase() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -6,69 +15,63 @@ function Showcase() {
   const services = [
     {
       id: 1,
-      title: "AI & Machine Learning",
-      description: "Harness the power of artificial intelligence to transform your business operations and unlock new possibilities.",
+      title: "AI Security Surveillance",
+      description: "Smart AI security monitoring real-time analytics, automated alerts, and seamless system integration.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
-      gradient: "from-indigo-600 to-purple-600"
+      gradient: "from-indigo-600 to-purple-600",
+      image: aiSecurity
     },
     {
       id: 2,
-      title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure designed to grow with your business and ensure seamless operations.",
+      title: "Workforce Management System",
+      description: "platform that helps companies manage their employees more efficiently by automating tasks such as attendance tracking, shift scheduling, leave management, and performance monitoring, while also providing real-time insights to improve overall productivity",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
         </svg>
       ),
-      gradient: "from-purple-600 to-pink-600"
+      gradient: "from-purple-600 to-pink-600",
+      image: onnsites
     },
     {
       id: 3,
-      title: "Web Development",
-      description: "Cutting-edge web applications built with modern frameworks and best practices for optimal performance.",
+      title: "Smart Patrolling",
+      description: "Intelligent patrolling with live monitoring, instant incident reporting, and seamless system integration.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       ),
-      gradient: "from-pink-600 to-indigo-600"
+      gradient: "from-pink-600 to-indigo-600",
+      image: smartPatrolling
     },
     {
       id: 4,
-      title: "Mobile Applications",
-      description: "Native and cross-platform mobile apps that deliver exceptional user experiences on any device.",
+      title: "License Plate Recognition",
+      description: "Streamline vehicle entry with intelligent plate recognition precise detection, instant verification, and unified system integration.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
         </svg>
       ),
-      gradient: "from-indigo-600 via-purple-600 to-pink-600"
+      gradient: "from-indigo-600 via-purple-600 to-pink-600",
+      image: licensePlate
     },
     {
       id: 5,
-      title: "Data Analytics",
-      description: "Transform raw data into actionable insights with advanced analytics and visualization tools.",
+      title: "Visitor Management System",
+      description: "Simplify visitor operations with our all-in-one web-based system secure, efficient, and fully integrated, from registration and reservations to visitor statistics and access control",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
-      gradient: "from-purple-600 to-indigo-600"
-    },
-    {
-      id: 6,
-      title: "Cybersecurity",
-      description: "Enterprise-grade security solutions to protect your digital assets and ensure data integrity.",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
-      gradient: "from-pink-600 to-purple-600"
+      gradient: "from-purple-600 to-indigo-600",
+      image: visitorManagement
     }
   ];
 
@@ -85,21 +88,44 @@ function Showcase() {
   };
 
   return (
-    <section className="relative bg-black overflow-hidden py-20">
+    <section className="relative bg-black overflow-hidden pt-20 pb-10">
       {/* Background blur effects matching Hero */}
-      {/* <div className="absolute bottom-0 left-0 w-80 h-36 bg-purple-600/30 blur-3xl"></div>
-      <div className="absolute top-28 right-0 w-80 h-36 bg-pink-600/30 blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 blur-3xl"></div> */}
+      {/* Large circular glow - top area */}
+      <div className="absolute top-20 right-32 w-96 h-96 bg-pink-600/40 rounded-full blur-3xl"></div>
+      
+      {/* Small accent - middle right */}
+      <div className="absolute top-1/2 right-32 w-64 h-64 bg-purple-600/30 rounded-full blur-3xl"></div>
+      
+      <div className="absolute top-3/4 left-36 w-64 h-64 bg-pink-600/30 rounded-full blur-3xl"></div>
+      
+      {/* Diagonal beam effect - center */}
+      <div className="absolute top-1/3 left-1/4 w-96 h-32 bg-gradient-to-r from-pink-500/20 via-purple-500/30 to-indigo-500/20 blur-2xl -rotate-45"></div>
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Our Services
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Empowering businesses with innovative technology solutions
+
+        <div className="relative mb-16 pl-9">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Large Mission Text with Gradient on Left */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                Transforming Businesses Through
+                <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent pt-12">
+                  Innovation & Technology
+                </span>
+              </h2>
+            </div>
+            
+            {/* Mission Description on Right */}
+            <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+            We deliver cutting-edge solutions tailored to your business needs. From AI-powered systems to cloud infrastructure, 
+            our comprehensive services drive digital transformation and operational excellence.
           </p>
+          </div>
+        </div>
+
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          
         </div>
 
         {/* Two Column Layout - Carousel Side by Side */}
@@ -111,14 +137,14 @@ function Showcase() {
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
-                {services.map((service, index) => (
+                {services.map((service) => (
                   <div
                     key={service.id}
                     className="min-w-full px-4"
                   >
                     <div className="group relative">
                       {/* Card */}
-                      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 h-full transition-all duration-500 group-hover:border-transparent">
+                      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 h-[320px] flex flex-col justify-center transition-all duration-500 group-hover:border-transparent">
                         {/* Animated border lines - Top */}
                         <div className={`absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r ${service.gradient} group-hover:w-full transition-all duration-700 ease-out`}></div>
                         
@@ -168,7 +194,7 @@ function Showcase() {
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
-                {services.map((service, index) => (
+                {services.map((service) => (
                   <div
                     key={`img-${service.id}`}
                     className="min-w-full px-4"
@@ -177,13 +203,13 @@ function Showcase() {
                     <div className="group relative">
                       <div className={`absolute -inset-0.5 bg-gradient-to-r ${service.gradient} blur opacity-30 group-hover:opacity-75 transition-opacity duration-500`}></div>
                       
-                      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-4 aspect-square flex items-center justify-center overflow-hidden">
-                        {/* Placeholder for images - you can replace with actual images */}
-                        <div className={`w-full h-full bg-gradient-to-br ${service.gradient} opacity-20 flex items-center justify-center`}>
-                          <div className="text-white text-6xl opacity-50">
-                            {service.icon}
-                          </div>
-                        </div>
+                      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-4 h-[320px] flex items-center justify-center overflow-hidden">
+                        {/* Service Images */}
+                        <img 
+                          src={service.image} 
+                          alt={service.title}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
                       </div>
                     </div>
                   </div>
@@ -194,7 +220,24 @@ function Showcase() {
         </div>
 
         {/* Navigation Controls - Centered Below */}
-        <div className="max-w-4xl mx-auto mt-8">
+        <div className="max-w-4xl mx-auto mt-12 mb-20">
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-3 pb-12">
+            {services.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentSlide
+                    ? 'w-10 h-3 bg-gradient-to-r from-indigo-600 to-pink-600'
+                    : 'w-3 h-3 bg-white/30 hover:bg-white/50'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+          
           {/* Navigation Buttons */}
           <div className="flex justify-center items-center gap-4 mb-8">
             <button
@@ -218,21 +261,123 @@ function Showcase() {
             </button>
           </div>
 
-          {/* Dot Indicators */}
-          <div className="flex justify-center gap-3">
-            {services.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentSlide
-                    ? 'w-10 h-3 bg-gradient-to-r from-indigo-600 to-pink-600'
-                    : 'w-3 h-3 bg-white/30 hover:bg-white/50'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
+          
+        </div>
+
+        {/* Solutions Grid Section */}
+        <div className="relative mt-32 mb-16">
+          {/* Background blur effects for Solutions Grid */}
+          {/* <div className="absolute -top-20 left-32 w-96 h-96 bg-indigo-600/40 rounded-full blur-3xl"></div>*/}
+          <div className="absolute top-0 right-10 w-80 h-80 bg-pink-600/40 rounded-full blur-3xl"></div>
+          {/* <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-purple-600/30 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/3 w-96 h-32 bg-gradient-to-r from-indigo-500/20 via-pink-500/30 to-purple-500/20 blur-2xl rotate-45"></div> */}
+          
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+            {/* Software Development - Spans 2 columns on large screens */}
+            <div className="lg:col-span-2 group relative overflow-hidden h-56 cursor-pointer">
+              {/* Animated border lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              
+              <img 
+                src={softwareDev} 
+                alt="Software Development"
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
               />
-            ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Software Development</h3>
+                <p className="text-sm text-gray-200">Custom enterprise solutions and scalable applications</p>
+              </div>
+            </div>
+
+            {/* Web App */}
+            <div className="group relative overflow-hidden h-56 cursor-pointer">
+              {/* Animated border lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              
+              <img 
+                src={webApp} 
+                alt="Web Applications"
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Web Applications</h3>
+                <p className="text-sm text-gray-200">Modern responsive web platforms</p>
+              </div>
+            </div>
+
+            {/* Mobile App */}
+            <div className="group relative overflow-hidden h-56 cursor-pointer">
+              {/* Animated border lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              
+              <img 
+                src={mobileApp} 
+                alt="Mobile Applications"
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Mobile Applications</h3>
+                <p className="text-sm text-gray-200">iOS and Android app development</p>
+              </div>
+            </div>
+
+            {/* AI Integration - Spans 2 columns on large screens */}
+            <div className="lg:col-span-2 group relative overflow-hidden h-56 cursor-pointer">
+              {/* Animated border lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-indigo-600 via-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-indigo-600 via-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              
+              <img 
+                src={aiIntegration} 
+                alt="AI Integration"
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">AI Integration</h3>
+                <p className="text-sm text-gray-200">Intelligent automation and machine learning solutions</p>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* WE ARE HEROBOTS Section - Full Width Edge to Edge */}
+      <div className="relative mb-32 md:mb-40 w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16">
+        {/* Large Background Text with Gradient - Full Width Edge to Edge */}
+        <h2 className="text-[15vw] md:text-[5vw] lg:text-[8vw] font-bold bg-gradient-to-r from-yellow-600/30 via-purple-600/30 to-yellow-600/30 bg-clip-text text-transparent leading-none select-none text-center w-full">
+          WE ARE HEROBOTS
+        </h2>
+      
+        {/* Overlay Description Text - positioned lower */}
+        <div className="absolute top-[102%] left-0 right-0 transform -translate-y-1/2 flex justify-center px-4 md:px-8">
+          <p className="text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-2xl text-center">
+            HeroBots Sdn. Bhd. is a leading provider of Al, robotics, and
+            security technology
+            solutions, driving innovation that enhances efficiency, safety, and productivity across industries.
+            <br />
+            <br />
+            We specialize in Al-Powered security systems, intelligent 
+            management platforms, and robotics education, delivering
+            solutions that safeguard assets, streamline 
+            operations, and empower organizations for the future of industrial
+            transformation.
+          </p>
         </div>
       </div>
     </section>
