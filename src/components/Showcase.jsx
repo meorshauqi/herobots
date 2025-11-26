@@ -356,30 +356,6 @@ function Showcase() {
           </div>
         </div>
       </div>
-
-      {/* WE ARE HEROBOTS Section - Full Width Edge to Edge */}
-      <div className="relative mb-32 md:mb-40 w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16">
-        {/* Large Background Text with Gradient - Full Width Edge to Edge */}
-        <h2 className="text-[15vw] md:text-[5vw] lg:text-[8vw] font-bold bg-gradient-to-r from-yellow-600/30 via-purple-600/30 to-yellow-600/30 bg-clip-text text-transparent leading-none select-none text-center w-full">
-          WE ARE HEROBOTS
-        </h2>
-      
-        {/* Overlay Description Text - positioned lower */}
-        <div className="absolute top-[102%] left-0 right-0 transform -translate-y-1/2 flex justify-center px-4 md:px-8">
-          <p className="text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-2xl text-center">
-            HeroBots Sdn. Bhd. is a leading provider of Al, robotics, and
-            security technology
-            solutions, driving innovation that enhances efficiency, safety, and productivity across industries.
-            <br />
-            <br />
-            We specialize in Al-Powered security systems, intelligent 
-            management platforms, and robotics education, delivering
-            solutions that safeguard assets, streamline 
-            operations, and empower organizations for the future of industrial
-            transformation.
-          </p>
-        </div>
-      </div>
     </section>
   );
 }

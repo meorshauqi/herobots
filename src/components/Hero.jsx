@@ -27,18 +27,18 @@ function Hero() {
         <div className="absolute top-1/4 right-1/4 w-96 h-32 bg-gradient-to-r from-indigo-500/20 via-purple-500/30 to-pink-500/20 blur-2xl rotate-45"></div>
         <div className="container mx-auto px-6 py-40">
           <div className="text-center mb-40">
-            <h1 className="text-6xl font-medium mb-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent">
+            <h1 className="text-6xl font-medium mb-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent animate-slideInLeft">
             <span className="block pb-10">Accelerating</span>
             <span className="block pb-10">The Future With</span>
             <span className="block pb-10">Cutting-edge Solutions</span>
             </h1>            
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto animate-slideInLeft">
             From concept to product, we make it happen
             </p>
           </div>
 
           {/* Client Logos Section */}
-          <div className="relative overflow-hidden max-w-6xl mx-auto">
+          <div className="relative overflow-hidden max-w-6xl mx-auto animate-slideInLeft delay-600">
             {/* Infinite Scrolling Logos */}
             <div className="relative">
               {/* Gradient overlays for fade effect */}
