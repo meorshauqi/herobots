@@ -15,6 +15,12 @@ function Products() {
     projects: 0,
   });
 
+  const [expandedProduct, setExpandedProduct] = useState(null);
+
+  const toggleProduct = (productId) => {
+    setExpandedProduct(expandedProduct === productId ? null : productId);
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -106,136 +112,115 @@ function Products() {
   ];
 
   return (
-    <section className="relative bg-black text-white overflow-hidden py-20 min-h-screen">
+    <section className="relative bg-black text-white overflow-hidden pt-20 pb-2 min-h-screen">
       {/* Background effects */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-600/20 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/20 blur-3xl"></div>
+      <div className="absolute top-40 left-1/4 w-96 h-96 bg-gradient-to-r from-indigo-500/20 via-purple-500/30 to-pink-500/20 blur-3xl"></div>
+      <div className="absolute bottom-40 right-0 w-96 h-96 bg-purple-600/20 blur-3xl rotate-45"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        {/* Hero Section */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Our Products
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Transforming challenges into opportunities with cutting-edge AI, robotics, 
-            and security solutions that drive efficiency, safety, and innovation across industries.
-          </p>
-        </div>
-
-        {/* Stats Section */}
-        <div
-          ref={statsRef}
-          data-section="stats"
-          className={`mb-32 transition-all duration-[900ms] ease-out ${
-            isVisible.stats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {/* Year Established */}
-            <div className="bg-white/5 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
-                {counts.years}
-              </div>
-              <div className="text-gray-400 text-lg">Year Established</div>
-            </div>
-
-            {/* Satisfied Clients */}
-            <div className="bg-white/5 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                </svg>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                {counts.clients}+
-              </div>
-              <div className="text-gray-400 text-lg">Satisfied Clients</div>
-            </div>
-
-            {/* Completed Projects */}
-            <div className="bg-white/5 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-pink-600 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                </svg>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent mb-2">
-                {counts.projects}+
-              </div>
-              <div className="text-gray-400 text-lg">Completed Projects</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Products Alternating Layout */}
+        {/* Two Column Layout */}
         <div
           ref={productsRef}
           data-section="products"
-          className={`transition-all duration-[900ms] ease-out delay-200 ${
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start transition-all duration-[900ms] ease-out delay-200 ${
             isVisible.products ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          
-          <div className="space-y-20">
-            {products.map((product, index) => (
+          {/* Left Side - Text Content */}
+          <div className="space-y-6 lg:sticky lg:top-9 ">
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              Our
+              <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2">
+                Products & Solutions
+              </span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Transforming challenges into opportunities with cutting-edge AI, robotics, 
+              and security solutions that drive efficiency, safety, and innovation across industries.
+            </p>
+
+            {/* Built for the Future Section */}
+            <div className="pt-8">
+              <div className="mb-8">
+                <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Built for the Future
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="group cursor-pointer">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                    SECURE
+                  </div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">Surveillance & Access</p>
+                </div>
+
+                <div className="group cursor-pointer">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                    SMART
+                  </div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">AI-Powered</p>
+                </div>
+
+                <div className="group cursor-pointer">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-indigo-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                    STREAM
+                  </div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">Workflow Management</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Products Accordion */}
+          <div className="space-y-4">
+            {products.map((product) => (
               <div
                 key={product.id}
-                className={`group flex flex-col ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } gap-8 items-center`}
+                onClick={() => toggleProduct(product.id)}
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
               >
-                {/* Gradient Visual Block */}
-                <div className="w-full md:w-1/2 relative">
-                  <div className={`relative h-80 bg-gradient-to-br ${product.gradient} overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
-                    {/* Animated gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                    
-                    {/* Decorative elements */}
-                    <div className="absolute top-8 left-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-                    <div className="absolute bottom-8 right-8 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                    
-                    {/* Product Number */}
-                    <div className="absolute bottom-8 left-8">
-                      <span className="text-8xl font-bold text-white/20">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </div>
+                {/* Animated border lines */}
+                <div className={`absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r ${product.gradient} group-hover:w-full transition-all duration-700 ease-out`}></div>
+                <div className={`absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b ${product.gradient} group-hover:h-full transition-all duration-700 ease-out delay-150`}></div>
+                <div className={`absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l ${product.gradient} group-hover:w-full transition-all duration-700 ease-out delay-300`}></div>
+                <div className={`absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t ${product.gradient} group-hover:h-full transition-all duration-700 ease-out delay-[450ms]`}></div>
 
-                    {/* Animated border lines */}
-                    <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
-                    <div className="absolute top-0 right-0 w-1 h-0 bg-gradient-to-b from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
-                    <div className="absolute bottom-0 right-0 w-0 h-1 bg-gradient-to-l from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
-                    <div className="absolute bottom-0 left-0 w-1 h-0 bg-gradient-to-t from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+                {/* Product Header - Fully Clickable */}
+                <div className="w-full p-6 flex items-center justify-between">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
+                    {product.name}
+                  </h3>
+                  
+                  {/* Plus/Minus Icon */}
+                  <div className={`flex-shrink-0 w-8 h-8 flex items-center justify-center transition-transform duration-300 ${expandedProduct === product.id ? 'rotate-45' : ''}`}>
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
                   </div>
                 </div>
 
-                {/* Content Block */}
-                <div className="w-full md:w-1/2 space-y-6">
-                  <div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
-                      {product.name}
-                    </h3>
-                  </div>
-                  
-                  <p className="text-gray-400 text-lg leading-relaxed">
-                    {product.description}
-                  </p>
-                  
-                  <div className="flex items-center space-x-4 pt-4">
-                    <button className={`px-8 py-3 bg-gradient-to-r ${product.gradient} text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl`}>
+                {/* Expandable Content */}
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                    expandedProduct === product.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-6 pb-6 space-y-4">
+                    <p className="text-gray-300 text-lg leading-relaxed">
+                      {product.description}
+                    </p>
+                    
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Add your learn more logic here
+                      }}
+                      className={`px-8 py-3 bg-gradient-to-r ${product.gradient} text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl`}
+                    >
                       Learn More
                     </button>
-                    <button className="px-8 py-3 bg-white/5 border border-gray-700 text-white font-semibold hover:bg-white/10 hover:border-gray-600 transition-all duration-300">
-                      View Details
-                    </button>
                   </div>
-                  
                 </div>
               </div>
             ))}

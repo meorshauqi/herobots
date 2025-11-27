@@ -46,7 +46,7 @@ function About() {
       <div
         ref={heroRef}
         data-section="hero"
-        className={`transition-all duration-[1500ms] ease-in ${
+        className={`transition-all duration-[1000ms] ease-in ${
           isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -78,7 +78,7 @@ function About() {
       <div
         ref={visionRef}
         data-section="vision"
-        className={`transition-all duration-[1500ms] ease-in delay-150 ${
+        className={`transition-all duration-[1000ms] ease-in delay-150 ${
           isVisible.vision ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -102,7 +102,7 @@ function About() {
       <div
         ref={missionRef}
         data-section="mission"
-        className={`transition-all duration-[2000ms] ease-in-out delay-400 ${
+        className={`transition-all duration-[1000ms] ease-in-out delay-400 ${
           isVisible.mission ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >

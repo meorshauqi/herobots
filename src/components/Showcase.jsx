@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import smartPatrolling from '../assets/services/smart-patrolling.png';
 import licensePlate from '../assets/services/license-plate-recognition.png';
 import visitorManagement from '../assets/services/visitor-management-system.png';
@@ -11,6 +11,77 @@ import aiIntegration from '../assets/services/ai-integration.jpg';
 
 function Showcase() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const statsRef = useRef(null);
+  const showcaseRef = useRef(null);
+  
+  const [isVisible, setIsVisible] = useState({
+    showcase: false,
+    stats: false,
+  });
+  
+  const [counts, setCounts] = useState({
+    years: 0,
+    clients: 0,
+    projects: 0,
+  });
+
+  // Intersection Observer for showcase and stats visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(prev => ({
+              ...prev,
+              [entry.target.dataset.section]: true,
+            }));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const targets = [showcaseRef.current, statsRef.current];
+    targets.forEach(target => target && observer.observe(target));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Animate numbers when stats become visible
+  useEffect(() => {
+    if (isVisible.stats) {
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const stepDuration = duration / steps;
+      
+      const targets = {
+        years: 2023,
+        clients: 30,
+        projects: 100,
+      };
+      
+      let currentStep = 0;
+      
+      const timer = setInterval(() => {
+        currentStep++;
+        const progress = currentStep / steps;
+        
+        setCounts({
+          years: Math.floor(targets.years * progress),
+          clients: Math.floor(targets.clients * progress),
+          projects: Math.floor(targets.projects * progress),
+        });
+        
+        if (currentStep >= steps) {
+          setCounts(targets);
+          clearInterval(timer);
+        }
+      }, stepDuration);
+      
+      return () => clearInterval(timer);
+    }
+  }, [isVisible.stats]);
   
   const services = [
     {
@@ -28,7 +99,7 @@ function Showcase() {
     {
       id: 2,
       title: "Workforce Management System",
-      description: "platform that helps companies manage their employees more efficiently by automating tasks such as attendance tracking, shift scheduling, leave management, and performance monitoring, while also providing real-time insights to improve overall productivity",
+      description: "Streamline employee management with automated attendance, scheduling, leave tracking, and performance monitoring. Get real-time insights to boost productivity.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
@@ -104,7 +175,13 @@ function Showcase() {
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
 
-        <div className="relative mb-16 pl-9">
+        <div 
+          ref={showcaseRef}
+          data-section="showcase"
+          className={`relative mb-16 pl-9 transition-all duration-[2000ms] ease-out ${
+            isVisible.showcase ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Large Mission Text with Gradient on Left */}
             <div>
@@ -144,7 +221,7 @@ function Showcase() {
                   >
                     <div className="group relative">
                       {/* Card */}
-                      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 h-[320px] flex flex-col justify-center transition-all duration-500 group-hover:border-transparent">
+                      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 h-[320px] flex flex-col justify-start transition-all duration-500 group-hover:border-transparent">
                         {/* Animated border lines - Top */}
                         <div className={`absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r ${service.gradient} group-hover:w-full transition-all duration-700 ease-out`}></div>
                         
@@ -157,18 +234,11 @@ function Showcase() {
                         {/* Animated border lines - Left */}
                         <div className={`absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t ${service.gradient} group-hover:h-full transition-all duration-700 ease-out delay-[450ms]`}></div>
                         
-                        {/* Icon Container */}
-                        <div className={`w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-2xl`}>
-                          <div className="text-white">
-                            {service.icon}
-                          </div>
-                        </div>
-
                         {/* Content */}
-                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-500">
+                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-500">
                           {service.title}
                         </h3>
-                        <p className="text-gray-300 text-lg leading-relaxed group-hover:text-gray-200 transition-colors duration-500">
+                        <p className="text-gray-300 text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-500 flex-1 overflow-y-auto">
                           {service.description}
                         </p>
 
@@ -262,6 +332,43 @@ function Showcase() {
           </div>
 
           
+        </div>
+
+        
+
+        {/* Stats Section */}
+        <div
+          ref={statsRef}
+          data-section="stats"
+          className={`mb-32 transition-all duration-[900ms] ease-out ${
+            isVisible.stats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {/* Year Established */}
+            <div className="bg-white/5 backdrop-blur-sm border border-gray-700/50 p-8 text-center hover:bg-white/10 transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                {counts.years}
+              </div>
+              <div className="text-gray-400 text-lg">Year Established</div>
+            </div>
+
+            {/* Satisfied Clients */}
+            <div className="bg-white/5 backdrop-blur-sm border border-gray-700/50 p-8 text-center hover:bg-white/10 transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                {counts.clients}+
+              </div>
+              <div className="text-gray-400 text-lg">Satisfied Clients</div>
+            </div>
+
+            {/* Completed Projects */}
+            <div className="bg-white/5 backdrop-blur-sm border border-gray-700/50 p-8 text-center hover:bg-white/10 transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent mb-2">
+                {counts.projects}+
+              </div>
+              <div className="text-gray-400 text-lg">Completed Projects</div>
+            </div>
+          </div>
         </div>
 
         {/* Solutions Grid Section */}
