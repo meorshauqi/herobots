@@ -277,10 +277,10 @@ function Showcase() {
             {/* Software Development - Spans 2 columns on large screens */}
             <div className="lg:col-span-2 group relative overflow-hidden h-56 cursor-pointer">
               {/* Animated border lines */}
-              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
-              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
-              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
-              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-1 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-1 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-1 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
               
               <img 
                 src={softwareDev} 
@@ -297,10 +297,10 @@ function Showcase() {
             {/* Web App */}
             <div className="group relative overflow-hidden h-56 cursor-pointer">
               {/* Animated border lines */}
-              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
-              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
-              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
-              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-1 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-1 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-1 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
               
               <img 
                 src={webApp} 
@@ -317,10 +317,10 @@ function Showcase() {
             {/* Mobile App */}
             <div className="group relative overflow-hidden h-56 cursor-pointer">
               {/* Animated border lines */}
-              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
-              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
-              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
-              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-1 h-0 bg-gradient-to-b from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-1 bg-gradient-to-l from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-1 h-0 bg-gradient-to-t from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
               
               <img 
                 src={mobileApp} 
@@ -337,10 +337,10 @@ function Showcase() {
             {/* AI Integration - Spans 2 columns on large screens */}
             <div className="lg:col-span-2 group relative overflow-hidden h-56 cursor-pointer">
               {/* Animated border lines */}
-              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
-              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-indigo-600 via-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
-              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
-              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-indigo-600 via-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
+              <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
+              <div className="absolute top-0 right-0 w-1 h-0 bg-gradient-to-b from-indigo-600 via-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150 z-20"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-1 bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300 z-20"></div>
+              <div className="absolute bottom-0 left-0 w-1 h-0 bg-gradient-to-t from-indigo-600 via-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms] z-20"></div>
               
               <img 
                 src={aiIntegration} 
