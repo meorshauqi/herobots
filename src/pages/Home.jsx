@@ -9,8 +9,9 @@ function Home() {
     <>
       <Hero />
       <Showcase />
-      <About />
       <Products />
+      <About />
+      {/* <Products /> */}
       <Member />
     </>
   )
