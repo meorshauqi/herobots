@@ -12,7 +12,7 @@ function Home() {
       <Products />
       <About />
       {/* <Products /> */}
-      <Member />
+      {/* <Member /> */}
     </>
   )
 }
