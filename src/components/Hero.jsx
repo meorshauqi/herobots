@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Hero.css';
 import logo from '../assets/logo/logo.png';
 import prasarana from '../assets/logo/prasarana.png';
 import pbjv from '../assets/logo/pbjv.png';
@@ -90,16 +91,14 @@ function Hero() {
               data-section-id="hero-text"
               className="text-center lg:text-left space-y-6 px-4 lg:px-0"
             >
-              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent leading-tight transition-all duration-1000 ${
+              <h1 className={`hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight transition-all duration-1000 ${
                 visibleSections.has('hero-text')
                   ? 'opacity-100 translate-x-0 rotate-0'
                   : 'opacity-0 -translate-x-20 -rotate-3'
               }`}
               style={{ 
                 transitionDelay: '0.1s',
-                transformOrigin: 'left center',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
+                transformOrigin: 'left center'
               }}>
                 <span className={`block mb-4 sm:mb-6 md:mb-8 lg:mb-10 transition-all duration-700 ${
                   visibleSections.has('hero-text')
