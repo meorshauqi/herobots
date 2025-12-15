@@ -3,7 +3,7 @@ import logo from '../assets/logo/Herobots-Logo-2025.png'
 
 const LoadingScreen = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0)
-  const [isExiting, setIsExiting] = useState(false)
+  const [isDone, setIsDone] = useState(false)
 
   useEffect(() => {
     // Simulate loading progress
@@ -11,9 +11,9 @@ const LoadingScreen = ({ onLoadingComplete }) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
-          // Trigger PowerPoint-style exit animation
+          // Trigger exit animation
           setTimeout(() => {
-            setIsExiting(true)
+            setIsDone(true)
             // Complete loading after animation finishes
             setTimeout(() => {
               onLoadingComplete()
@@ -29,38 +29,22 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   }, [onLoadingComplete])
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden ${isExiting ? 'animate-slide-zoom-out' : ''}`}>
+    <div id="preloader" className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden transition-all duration-1000 ${isDone ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
       {/* Animated grid background */}
-      <div className={`absolute inset-0 opacity-20 ${isExiting ? 'animate-slide-up-fast' : ''}`}>
+      <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-grid-pattern animate-grid-flow"></div>
       </div>
 
       {/* Hexagonal frame decoration */}
-      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none ${isExiting ? 'animate-spin-zoom-out' : ''}`}>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative">
           <div className="hexagon-frame animate-spin-slow"></div>
           <div className="hexagon-frame-2 animate-spin-reverse"></div>
         </div>
       </div>
 
-      {/* Particle effects */}
-      <div className={`absolute inset-0 ${isExiting ? 'animate-fade-out-fast' : ''}`}>
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Main content */}
-      <div className={`relative z-10 text-center px-4 ${isExiting ? 'animate-slide-up-zoom' : ''}`}>
+      <div className="relative z-10 text-center px-4">
         {/* Logo container with holographic effect */}
         <div className="relative mb-8 group">
           
@@ -93,14 +77,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
               <div className="absolute right-0 top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
             </div>
           </div>
-          
-          {/* Progress percentage with digital font style */}
-          <div className="flex justify-between items-center mt-4">
-            <span className="text-[#4F46E5] text-xs font-mono tracking-wider">LOADING...</span>
-            <span className="text-white text-lg font-bold font-mono tabular-nums tracking-wider">
-              {progress}<span className="text-[#9333EA]">%</span>
-            </span>
-          </div>
+        
         </div>
 
         {/* Tech-style loading indicator */}

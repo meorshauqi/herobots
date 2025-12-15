@@ -2,6 +2,11 @@ import logo from '../assets/logo/logo.png';
 import prasarana from '../assets/logo/prasarana.png';
 import pbjv from '../assets/logo/pbjv.png';
 import baxtech from '../assets/logo/baxtech.webp';
+import aiSecurity2 from '../assets/services/ai-security-serveillance-2.png';
+import aiSecurity3 from '../assets/services/ai-security-serveillance-3.png';
+import aiSecurity4 from '../assets/services/ai-security-serveillance-4.png';
+import faceRecognition from '../assets/services/face-recognition.png';
+import fireSmokeDetection from '../assets/services/Fire-Smoke-Detection.png';
 
 function Hero() {
   const clients = [
@@ -9,6 +14,14 @@ function Hero() {
     { name: "Prasarana", logo: prasarana },
     { name: "PBJV", logo: pbjv },
     { name: "Baxtech", logo: baxtech }
+  ];
+
+  const services = [
+    { name: "ai-security-serveillance-2", image: aiSecurity2 },
+    { name: "ai-security-serveillance-3", image: aiSecurity3 },
+    { name: "ai-security-serveillance-4", image: aiSecurity4 },
+    { name: "face-recognition", image: faceRecognition },
+    { name: "Fire-Smoke-Detection", image: fireSmokeDetection }
   ];
 
   
@@ -25,20 +38,44 @@ function Hero() {
         
         {/* Diagonal beam effect - center */}
         <div className="absolute top-1/4 right-1/4 w-96 h-32 bg-gradient-to-r from-indigo-500/20 via-purple-500/30 to-pink-500/20 blur-2xl rotate-45"></div>
-        <div className="container mx-auto px-6 py-40">
-          <div className="text-center mb-40">
-            <h1 className="text-6xl font-medium mb-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent animate-slideInLeft">
-            <span className="block pb-10">Accelerating</span>
-            <span className="block pb-10">The Future With</span>
-            <span className="block pb-10">Cutting-edge Solutions</span>
-            </h1>            
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto animate-slideInLeft">
-            From concept to product, we make it happen
-            </p>
+        <div className="container mx-auto px-6 py-20">
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left space-y-6">
+              <h1 className="text-5xl lg:text-6xl font-medium bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent animate-slideInLeft leading-tight">
+                <span className="block mb-4">Accelerating</span>
+                <span className="block mb-4">The Future With</span>
+                <span className="block">Cutting-edge Solutions</span>
+              </h1>            
+              <p className="text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto animate-slideInLeft">
+                From concept to product, we make it happen
+              </p>
+            </div>
+
+            {/* Right Column - Images Stack (iMessage style) */}
+            <div className="relative animate-slideInRight flex flex-col max-w-sm ml-auto">
+              {services.map((service, index) => (
+                <div 
+                  key={index}
+                  className={`relative overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] ${
+                    index !== 0 ? '-mt-4' : ''
+                  }`}
+                  style={{ zIndex: services.length - index }}
+                >
+                  {/* Image */}
+                  <img 
+                    src={service.image} 
+                    alt={service.name}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Client Logos Section */}
-          <div className="relative overflow-hidden max-w-6xl mx-auto animate-slideInLeft delay-600">
+          <div className="relative overflow-hidden max-w-6xl mx-auto animate-slideInLeft delay-600 mt-16">
             {/* Infinite Scrolling Logos */}
             <div className="relative">
               {/* Gradient overlays for fade effect */}

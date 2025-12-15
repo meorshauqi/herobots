@@ -1,1 +1,17 @@
 /* Custom styles for your app */
+
+/* Prevent initial flash before loading screen appears */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body.loaded {
+  overflow: auto;
+}
+
+/* Ensure smooth transitions */
+#root {
+  min-height: 100vh;
+}
