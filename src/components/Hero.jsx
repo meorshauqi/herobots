@@ -88,18 +88,20 @@ function Hero() {
             {/* Left Column - Text Content */}
             <div 
               data-section-id="hero-text"
-              className="text-center lg:text-left space-y-6"
+              className="text-center lg:text-left space-y-6 px-4 lg:px-0"
             >
-              <h1 className={`text-5xl lg:text-6xl font-medium bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent leading-tight transition-all duration-1000 ${
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent leading-tight transition-all duration-1000 ${
                 visibleSections.has('hero-text')
                   ? 'opacity-100 translate-x-0 rotate-0'
                   : 'opacity-0 -translate-x-20 -rotate-3'
               }`}
               style={{ 
                 transitionDelay: '0.1s',
-                transformOrigin: 'left center'
+                transformOrigin: 'left center',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
               }}>
-                <span className={`block mb-10 transition-all duration-700 ${
+                <span className={`block mb-4 sm:mb-6 md:mb-8 lg:mb-10 transition-all duration-700 ${
                   visibleSections.has('hero-text')
                     ? 'opacity-100 translate-y-0 blur-0'
                     : 'opacity-0 translate-y-8 blur-sm'
@@ -107,7 +109,7 @@ function Hero() {
                 style={{ transitionDelay: '0.2s' }}>
                   Accelerating
                 </span>
-                <span className={`block mb-10 transition-all duration-700 ${
+                <span className={`block mb-4 sm:mb-6 md:mb-8 lg:mb-10 transition-all duration-700 ${
                   visibleSections.has('hero-text')
                     ? 'opacity-100 translate-y-0 blur-0'
                     : 'opacity-0 translate-y-8 blur-sm'
@@ -115,7 +117,7 @@ function Hero() {
                 style={{ transitionDelay: '0.4s' }}>
                   The Future With
                 </span>
-                <span className={`block mb-16 transition-all duration-700 ${
+                <span className={`block mb-8 sm:mb-10 md:mb-12 lg:mb-16 transition-all duration-700 ${
                   visibleSections.has('hero-text')
                     ? 'opacity-100 translate-y-0 blur-0'
                     : 'opacity-0 translate-y-8 blur-sm'

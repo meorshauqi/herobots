@@ -153,26 +153,26 @@ function Products() {
                 </h3>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="group cursor-pointer">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
+                <div className="group cursor-pointer text-center sm:text-left">
+                  <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     SECURE
                   </div>
-                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">Surveillance & Access</p>
+                  <p className="text-gray-400 text-xs sm:text-[10px] uppercase tracking-widest">Surveillance & Access</p>
                 </div>
 
-                <div className="group cursor-pointer">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="group cursor-pointer text-center sm:text-left">
+                  <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     SMART
                   </div>
-                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">AI-Powered</p>
+                  <p className="text-gray-400 text-xs sm:text-[10px] uppercase tracking-widest">AI-Powered</p>
                 </div>
 
-                <div className="group cursor-pointer">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-indigo-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="group cursor-pointer text-center sm:text-left">
+                  <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-pink-400 to-indigo-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     STREAM
                   </div>
-                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">Workflow Management</p>
+                  <p className="text-gray-400 text-xs sm:text-[10px] uppercase tracking-widest">Workflow Management</p>
                 </div>
               </div>
             </div>
