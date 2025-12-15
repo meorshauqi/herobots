@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 // Word-by-word reveal component
 const WordReveal = ({ text, delay = 0, isVisible }) => {
@@ -584,9 +585,9 @@ function Products() {
             <p className="text-xl text-gray-300 mb-8">
               Get in touch with our team to discuss how our products can help you achieve your goals
             </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-[#4F46E5] via-[#9333EA] to-[#DB2777] text-white font-semibold text-lg hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-2xl">
+            <Link to="/contact" className="inline-block px-8 py-4 bg-gradient-to-r from-[#4F46E5] via-[#9333EA] to-[#DB2777] text-white font-semibold text-lg hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-2xl">
               Contact Us Today
-            </button>
+            </Link>
           </div>
         </div>
       </section>

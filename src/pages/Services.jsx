@@ -1,4 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import softwareDev from '../assets/services/software-development.webp';
+import webApp from '../assets/services/web-app.jpg';
+import mobileApp from '../assets/services/mobile-app.webp';
+import aiIntegration from '../assets/services/ai-integration.jpg';
 
 function Services() {
   const servicesRef = useRef(null);
@@ -20,25 +25,29 @@ function Services() {
       id: 1,
       title: "Software Development",
       description: "Custom software solutions tailored to your business needs. We build scalable, robust applications that drive efficiency and innovation.",
-      gradient: "from-indigo-600 to-purple-600"
+      gradient: "from-indigo-600 to-purple-600",
+      image: softwareDev
     },
     {
       id: 2,
-      title: "Web Applications",
+      title: "Web Development",
       description: "Modern, responsive web applications built with cutting-edge technologies. From single-page apps to complex enterprise solutions.",
-      gradient: "from-purple-600 to-pink-600"
+      gradient: "from-purple-600 to-pink-600",
+      image: webApp
     },
     {
       id: 3,
       title: "Mobile Applications",
       description: "Native and cross-platform mobile apps for iOS and Android. Delivering exceptional user experiences on any device.",
-      gradient: "from-pink-600 to-indigo-600"
+      gradient: "from-pink-600 to-indigo-600",
+      image: mobileApp
     },
     {
       id: 4,
       title: "AI Integration",
       description: "Harness the power of artificial intelligence to automate processes, gain insights, and transform your business operations.",
-      gradient: "from-indigo-600 via-purple-600 to-pink-600"
+      gradient: "from-indigo-600 via-purple-600 to-pink-600",
+      image: aiIntegration
     }
   ];
 
@@ -172,25 +181,31 @@ function Services() {
                   <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
                     {service.description}
                   </p>
-                  
-                  <button className={`mt-6 px-8 py-3 bg-gradient-to-r ${service.gradient} text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl`}>
-                    Learn More
-                  </button>
                 </div>
 
                 {/* Visual Block */}
                 <div className="w-full md:w-1/2 relative">
-                  <div className={`relative h-80 bg-gradient-to-br ${service.gradient} overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
+                  <div className={`relative h-80 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-2xl`}>
+                    {/* Service Image */}
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                    
                     {/* Animated gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent`}></div>
+                    
+                    {/* Gradient accent overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-30 mix-blend-overlay`}></div>
                     
                     {/* Decorative elements */}
                     <div className="absolute top-8 left-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                     <div className="absolute bottom-8 right-8 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
                     
                     {/* Service Number */}
-                    <div className="absolute bottom-8 left-8">
-                      <span className="text-8xl font-bold text-white/20">
+                    <div className="absolute bottom-8 left-8 z-10">
+                      <span className="text-8xl font-bold text-white/30">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
@@ -286,9 +301,9 @@ function Services() {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Let's discuss how our services can drive innovation and growth for your organization.
             </p>
-            <button className="px-12 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-lg font-semibold rounded-full hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
+            <Link to="/contact" className="inline-block px-12 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white text-lg font-semibold rounded-full hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
               Get Started Today
-            </button>
+            </Link>
           </div>
         </div>
       </div>

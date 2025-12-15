@@ -36,15 +36,11 @@ function Header() {
               Services
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/services' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
-            <a href="#contact" className="text-white/90 hover:text-white transition-all duration-300 font-medium relative group">
+            <Link to="/contact" className={`text-white/90 hover:text-white transition-all duration-300 font-medium relative group ${location.pathname === '/contact' ? 'text-white' : ''}`}>
               Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-            </a>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/contact' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            </Link>
           </nav>
-
-          <button className="ml-auto bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-purple-50 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
-              Enquire With Us
-            </button>
           
           <button className="md:hidden text-white p-2 hover:bg-white/20 rounded-lg transition">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

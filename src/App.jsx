@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import About from './pages/About'
 import Products from './pages/Products'
+import ContactUs from './pages/ContactUs'
 
 function AppContent() {
   const [loading, setLoading] = useState(false)
@@ -37,12 +39,14 @@ function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
       <Footer />
     </div>

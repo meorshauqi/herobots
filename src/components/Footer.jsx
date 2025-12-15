@@ -1,6 +1,68 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import herobotsLogo from '../assets/logo/Herobots-Logo-2025.png';
 
 function Footer() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch('/send-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Message sent successfully!'
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.message || 'Failed to send message.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'An error occurred. Please try again.'
+      });
+      console.error('Error sending email:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="relative bg-black text-white mt-auto overflow-hidden">
       <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-r from-blue-400/30 via-purple-400/20 to-pink-400/30 blur-3xl"></div>
@@ -45,10 +107,11 @@ function Footer() {
               <div>
                 <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
                 <ul className="space-y-3">
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Home</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">About Us</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Services</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Contact</a></li>
+                  <li><Link to="/" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Home</Link></li>
+                  <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">About</Link></li>
+                  <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Products</Link></li>
+                  <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Services</Link></li>
+                  <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Contact</Link></li>
                 </ul>
               </div>
               
@@ -59,20 +122,25 @@ function Footer() {
                     <svg className="w-5 h-5 mt-0.5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <span className="text-sm">info@herobots.com</span>
+                    <span className="text-sm">info@herobots.net</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <svg className="w-5 h-5 mt-0.5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <span className="text-sm">+1 234 567 890</span>
+                    <span className="text-sm">+60123709458</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <svg className="w-5 h-5 mt-0.5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span className="text-sm">Your City</span>
+                    <span className="text-sm">
+                      Unit L1.01, 1st FLoor,
+                      Cova Square, Jalan Teknologi,
+                      Kota Damansara, 47810 Petaling Jaya,
+                      Selangor, Malaysia
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -82,10 +150,25 @@ function Footer() {
           {/* Right Column - Contact Form */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Send Us a Message</h4>
-            <form className="space-y-4">
+            
+            {/* Status Message */}
+            {submitStatus.message && (
+              <div className={`mb-4 p-3 rounded-lg text-sm ${
+                submitStatus.type === 'success' 
+                  ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
+                  : 'bg-red-500/20 border border-red-500/50 text-red-300'
+              }`}>
+                {submitStatus.message}
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Your Name"
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300"
@@ -94,6 +177,9 @@ function Footer() {
               <div>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Your Email"
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300"
@@ -102,6 +188,9 @@ function Footer() {
               <div>
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="Subject"
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300"
@@ -109,6 +198,9 @@ function Footer() {
               </div>
               <div>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Your Message"
                   rows="4"
                   required
@@ -117,9 +209,24 @@ function Footer() {
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-pink-600 rounded-lg text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-pink-600 rounded-lg text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl ${
+                  isSubmitting 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:scale-105'
+                }`}
               >
-                Send Message
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </form>
           </div>
