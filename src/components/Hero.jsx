@@ -14,7 +14,8 @@ import lpr from '../assets/services/LPR.png';
 
 function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [visibleSections, setVisibleSections] = useState(new Set());
+  // Initialize with hero sections ALREADY visible (fixes mobile Safari issue)
+  const [visibleSections, setVisibleSections] = useState(new Set(['hero-text', 'hero-showcase']));
 
   const clients = [
     { name: "HeroBots", logo: logo },
@@ -41,6 +42,8 @@ function Hero() {
 
     return () => clearInterval(interval);
   }, [services.length]);
+
+  // No longer needed - hero sections are visible by default!
 
   // Scroll-triggered animations using Intersection Observer
   useEffect(() => {
@@ -91,46 +94,18 @@ function Hero() {
               data-section-id="hero-text"
               className="text-center lg:text-left space-y-6 px-4 lg:px-0"
             >
-              <h1 className={`hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight transition-all duration-1000 ${
-                visibleSections.has('hero-text')
-                  ? 'opacity-100 translate-x-0 rotate-0'
-                  : 'opacity-0 -translate-x-20 -rotate-3'
-              }`}
-              style={{ 
-                transitionDelay: '0.1s',
-                transformOrigin: 'left center'
-              }}>
-                <span className={`block mb-4 sm:mb-6 md:mb-8 lg:mb-10 transition-all duration-700 ${
-                  visibleSections.has('hero-text')
-                    ? 'opacity-100 translate-y-0 blur-0'
-                    : 'opacity-0 translate-y-8 blur-sm'
-                }`}
-                style={{ transitionDelay: '0.2s' }}>
+              <h1 className="hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+                <span className="block mb-4 sm:mb-6 md:mb-8 lg:mb-10 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                   Accelerating
                 </span>
-                <span className={`block mb-4 sm:mb-6 md:mb-8 lg:mb-10 transition-all duration-700 ${
-                  visibleSections.has('hero-text')
-                    ? 'opacity-100 translate-y-0 blur-0'
-                    : 'opacity-0 translate-y-8 blur-sm'
-                }`}
-                style={{ transitionDelay: '0.4s' }}>
+                <span className="block mb-4 sm:mb-6 md:mb-8 lg:mb-10 animate-fadeInDown" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
                   The Future With
                 </span>
-                <span className={`block mb-8 sm:mb-10 md:mb-12 lg:mb-16 transition-all duration-700 ${
-                  visibleSections.has('hero-text')
-                    ? 'opacity-100 translate-y-0 blur-0'
-                    : 'opacity-0 translate-y-8 blur-sm'
-                }`}
-                style={{ transitionDelay: '0.6s' }}>
+                <span className="block mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-fadeInDown" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
                   Cutting-edge Solutions
                 </span>
               </h1>            
-              <p className={`text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto transition-all duration-1000 ${
-                visibleSections.has('hero-text')
-                  ? 'opacity-100 translate-x-0 scale-100'
-                  : 'opacity-0 -translate-x-12 scale-95'
-              }`}
-              style={{ transitionDelay: '0.8s' }}>
+              <p className="text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto animate-fadeInUp" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
                 From concept to product, we make it happen
               </p>
             </div>

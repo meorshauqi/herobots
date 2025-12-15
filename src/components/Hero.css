@@ -1,33 +1,37 @@
-/* Hero gradient text - optimized for all devices */
+/* Hero gradient text - ALWAYS VISIBLE */
 .hero-gradient-text {
-  /* Use a nice bright color that works on all devices */
-  color: #FBBF24;
-  /* Add text shadow for depth */
+  color: #FBBF24 !important;
   text-shadow: 0 0 40px rgba(251, 191, 36, 0.5), 0 0 80px rgba(236, 72, 153, 0.3);
 }
 
-/* Gradient for desktop and modern browsers */
-@media (min-width: 768px) {
-  .hero-gradient-text {
-    background: linear-gradient(90deg, #FBBF24 0%, #EC4899 50%, #6366F1 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient-shift 3s ease infinite;
-    text-shadow: none;
+/* Animations - Same as Products.jsx */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Animated gradient for desktop */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% center;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  50% {
-    background-position: 100% center;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 1s ease-out both;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out both;
 }
 
