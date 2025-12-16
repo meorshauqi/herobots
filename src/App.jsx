@@ -10,6 +10,9 @@ import Services from './pages/Services'
 import About from './pages/About'
 import Products from './pages/Products'
 import ContactUs from './pages/ContactUs'
+import HeroWorks from './pages/HeroWorks'
+import AISecurity from './pages/AISecurity'
+import LPR from './pages/LPR'
 
 function AppContent() {
   const [loading, setLoading] = useState(false)
@@ -46,6 +49,9 @@ function AppContent() {
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/heroworks" element={<HeroWorks />} />
+        <Route path="/products/ai-security" element={<AISecurity />} />
+        <Route path="/products/licence-plate-recognition" element={<LPR />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
       <Footer />
