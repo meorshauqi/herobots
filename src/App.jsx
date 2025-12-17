@@ -13,6 +13,8 @@ import ContactUs from './pages/ContactUs'
 import HeroWorks from './pages/HeroWorks'
 import AISecurity from './pages/AISecurity'
 import LPR from './pages/LPR'
+import SmartPatrolling from './pages/SmartPatrolling'
+import VMS from './pages/VMS'
 
 function AppContent() {
   const [loading, setLoading] = useState(false)
@@ -52,6 +54,8 @@ function AppContent() {
         <Route path="/products/heroworks" element={<HeroWorks />} />
         <Route path="/products/ai-security" element={<AISecurity />} />
         <Route path="/products/licence-plate-recognition" element={<LPR />} />
+        <Route path="/products/smart-patrolling" element={<SmartPatrolling />} />
+        <Route path="/products/visitor-management" element={<VMS />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
       <Footer />

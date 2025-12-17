@@ -298,7 +298,7 @@ function ContactUs() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300"
-                      placeholder="+1 234 567 890"
+                      placeholder="+60 123456789"
                     />
                   </div>
                   

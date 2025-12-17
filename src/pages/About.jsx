@@ -1,7 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import akmalImg from '../assets/members/akmal.png';
 import nikhamdanImg from '../assets/members/ds-nikhamdan.png';
 import syasyaImg from '../assets/members/syasya.png';
+
+// Generate stable particle positions
+const generateParticles = () => [...Array(25)].map((_, i) => ({
+  id: i,
+  left: `${(i * 4 + 2) % 100}%`,
+  top: `${(i * 7 + 3) % 100}%`,
+  delay: `${(i * 0.2) % 5}s`,
+  duration: `${12 + (i % 6)}s`,
+  color: i % 3 === 0 ? 'bg-indigo-400/40' : i % 3 === 1 ? 'bg-purple-400/40' : 'bg-pink-400/40'
+}));
 
 function About() {
   const heroRef = useRef(null);
@@ -19,6 +29,9 @@ function About() {
   });
 
   const [displayedText, setDisplayedText] = useState('');
+
+  // Memoize particles to prevent regeneration
+  const particles = useMemo(() => generateParticles(), []);
   
   const fullText = "Pioneering the future of ";
   const highlightedText = "AI, robotics, and security technology";
@@ -99,10 +112,46 @@ function About() {
 
   return (
     <section className="relative bg-black text-white overflow-hidden min-h-screen">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 about-grid-bg" style={{
+          backgroundImage: `
+            linear-gradient(rgba(147, 51, 234, 0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(147, 51, 234, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px'
+        }}></div>
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className={`absolute w-1 h-1 rounded-full about-particle ${particle.color}`}
+            style={{
+              left: particle.left,
+              top: particle.top,
+              animationDelay: particle.delay,
+              animationDuration: particle.duration
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Tech Lines */}
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-pink-500/50 to-transparent"></div>
+
+      {/* Rotating Gradient Orb */}
+      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] rounded-full blur-3xl about-spin-slow -z-10" style={{
+        background: 'conic-gradient(from 0deg, rgba(99, 102, 241, 0.08), rgba(147, 51, 234, 0.08), rgba(236, 72, 153, 0.08), rgba(99, 102, 241, 0.08))'
+      }}></div>
+
       {/* Background blur effects */}
-      <div className="absolute bottom-0 left-0 w-80 h-36 bg-purple-600/30 blur-3xl"></div>
-      <div className="absolute top-28 right-0 w-80 h-36 bg-pink-600/30 blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-600/20 blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+      <div className="absolute top-28 right-0 w-80 h-80 bg-pink-600/20 blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/10 blur-3xl"></div>
 
       <div className="container mx-auto px-6 relative z-10 py-20">
         {/* Hero Section */}
@@ -121,9 +170,9 @@ function About() {
             
             {/* Main heading with enhanced styling */}
             <div className="relative inline-block mb-12">
-              {/* <h1 className="text-7xl md:text-9xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent relative z-10">
-                HeroBots
-              </h1> */}
+              <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent relative z-10 about-gradient-text">
+                Who We Are
+              </h1>
               {/* Glow effect behind text */}
               <div className="absolute inset-0 bg-gradient-to-r from-pink-600/20 via-purple-600/20 to-indigo-600/20 blur-3xl -z-10"></div>
             </div>
@@ -132,16 +181,16 @@ function About() {
             <div className="relative max-w-4xl mx-auto">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-indigo-600 to-purple-600"></div>
-                {/* <div className="w-2 h-2 bg-purple-600 rounded-full"></div> */}
+                <div className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></div>
                 <div className="flex-1 h-px bg-gradient-to-r from-purple-600 via-pink-600 to-transparent"></div>
               </div>
-              <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed font-light min-h-[1.5em]">
+              <p className="text-2xl md:text-3xl text-gray-400 leading-relaxed font-light min-h-[1.5em]">
                 {displayedText.length <= fullText.length ? (
-                  <span className="text-gray-300">{displayedText}</span>
+                  <span className="text-gray-400">{displayedText}</span>
                 ) : (
                   <>
-                    <span className="text-gray-300">{fullText}</span>
-                    <span className="text-white font-medium">
+                    <span className="text-gray-400">{fullText}</span>
+                    <span className="text-white font-medium bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">
                       {displayedText.slice(fullText.length)}
                     </span>
                   </>
@@ -149,7 +198,7 @@ function About() {
               </p>
               <div className="flex items-center justify-center gap-4 mt-6">
                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-600 to-indigo-600"></div>
-                {/* <div className="w-2 h-2 bg-indigo-600 rounded-full"></div> */}
+                <div className="w-2 h-2 bg-indigo-600 rounded-full animate-pulse"></div>
                 <div className="flex-1 h-px bg-gradient-to-r from-indigo-600 via-purple-600 to-transparent"></div>
               </div>
             </div>
@@ -298,7 +347,17 @@ function About() {
           }`}
         >
           <div className="text-center mb-16">
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full mb-6 about-glow-badge">
+              <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-mono text-indigo-400 uppercase tracking-wider">Our Team</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Leadership</span>
+              <span className="text-white"> Team</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Meet the visionaries driving innovation and excellence
             </p>
           </div>
@@ -348,20 +407,46 @@ function About() {
         </div>
 
         {/* Company Values Section */}
-        <div className="mt-32 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+        <div className="mt-32 max-w-6xl mx-auto relative">
+          {/* Section Background Effects */}
+          <div className="absolute -top-20 left-1/4 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 right-1/4 w-72 h-72 bg-pink-600/10 rounded-full blur-3xl"></div>
+
+          <div className="text-center mb-16 relative">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 border border-pink-500/30 rounded-full mb-6 about-glow-badge">
+              <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">Core Values</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="text-white">Our </span>
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Values</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               The principles that guide everything we do
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:border-white/20 transition-all duration-300 group text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {/* Innovation Card */}
+            <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-indigo-500/20 p-8 hover:border-white/30 transition-all duration-500 rounded-xl overflow-hidden text-center hover:scale-105 hover:-translate-y-2">
+              {/* Animated Border Lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 group-hover:w-full transition-all duration-700 ease-out"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-indigo-600 to-purple-600 group-hover:h-full transition-all duration-700 ease-out delay-150"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-indigo-600 to-purple-600 group-hover:w-full transition-all duration-700 ease-out delay-300"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-indigo-600 to-purple-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms]"></div>
+
+              {/* Glow Effect */}
+              <div className="absolute -inset-px bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl"></div>
+
+              {/* Icon */}
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
+
               <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
                 Innovation
               </h3>
@@ -370,12 +455,24 @@ function About() {
               </p>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:border-white/20 transition-all duration-300 group text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            {/* Excellence Card */}
+            <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-purple-500/20 p-8 hover:border-white/30 transition-all duration-500 rounded-xl overflow-hidden text-center hover:scale-105 hover:-translate-y-2">
+              {/* Animated Border Lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-150"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-purple-600 to-pink-600 group-hover:w-full transition-all duration-700 ease-out delay-300"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-purple-600 to-pink-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms]"></div>
+
+              {/* Glow Effect */}
+              <div className="absolute -inset-px bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl"></div>
+
+              {/* Icon */}
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
+
               <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
                 Excellence
               </h3>
@@ -384,12 +481,24 @@ function About() {
               </p>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:border-white/20 transition-all duration-300 group text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-pink-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            {/* Partnership Card */}
+            <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-pink-500/20 p-8 hover:border-white/30 transition-all duration-500 rounded-xl overflow-hidden text-center hover:scale-105 hover:-translate-y-2">
+              {/* Animated Border Lines */}
+              <div className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-150"></div>
+              <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-pink-600 to-indigo-600 group-hover:w-full transition-all duration-700 ease-out delay-300"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-0 bg-gradient-to-t from-pink-600 to-indigo-600 group-hover:h-full transition-all duration-700 ease-out delay-[450ms]"></div>
+
+              {/* Glow Effect */}
+              <div className="absolute -inset-px bg-gradient-to-r from-pink-600 to-indigo-600 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl"></div>
+
+              {/* Icon */}
+              <div className="w-16 h-16 bg-gradient-to-r from-pink-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
+
               <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-pink-400 group-hover:to-indigo-400 group-hover:bg-clip-text transition-all duration-300">
                 Partnership
               </h3>
@@ -400,6 +509,56 @@ function About() {
           </div>
         </div>
       </div>
+
+      {/* Animations */}
+      <style jsx>{`
+        /* Grid Animation */
+        @keyframes gridMove {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(60px, 60px); }
+        }
+
+        .about-grid-bg {
+          animation: gridMove 25s linear infinite;
+        }
+
+        /* Particle Animation */
+        @keyframes particleFloat {
+          0% { transform: translateY(0) translateX(0); opacity: 0; }
+          10% { opacity: 0.6; }
+          90% { opacity: 0.6; }
+          100% { transform: translateY(-100vh) translateX(40px); opacity: 0; }
+        }
+
+        .about-particle {
+          animation: particleFloat 15s linear infinite;
+        }
+
+        /* Slow Spin */
+        @keyframes spinSlow {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .about-spin-slow {
+          animation: spinSlow 50s linear infinite;
+        }
+
+        /* Badge Glow */
+        @keyframes badgeGlow {
+          0%, 100% { box-shadow: 0 0 10px rgba(147, 51, 234, 0.3); }
+          50% { box-shadow: 0 0 25px rgba(147, 51, 234, 0.5), 0 0 40px rgba(236, 72, 153, 0.3); }
+        }
+
+        .about-glow-badge {
+          animation: badgeGlow 3s ease-in-out infinite;
+        }
+
+        /* Gradient Text Glow */
+        .about-gradient-text {
+          text-shadow: 0 0 40px rgba(147, 51, 234, 0.3), 0 0 80px rgba(236, 72, 153, 0.2);
+        }
+      `}</style>
     </section>
   );
 }

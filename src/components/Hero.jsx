@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './Hero.css';
 import logo from '../assets/logo/logo.png';
 import prasarana from '../assets/logo/prasarana.png';
@@ -16,6 +16,17 @@ function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   // Initialize with hero sections ALREADY visible (fixes mobile Safari issue)
   const [visibleSections, setVisibleSections] = useState(new Set(['hero-text', 'hero-showcase']));
+
+  // Generate stable random positions for particles
+  const particles = useMemo(() => 
+    [...Array(25)].map((_, i) => ({
+      id: i,
+      left: `${(i * 4 + 2) % 100}%`,
+      top: `${(i * 7 + 5) % 100}%`,
+      delay: `${(i * 0.2) % 5}s`,
+      duration: `${8 + (i % 8)}s`,
+      size: i % 3 === 0 ? 'w-1.5 h-1.5' : 'w-1 h-1'
+    })), []);
 
   const clients = [
     { name: "HeroBots", logo: logo },
@@ -74,26 +85,76 @@ function Hero() {
 
   
     return (
-        <main className="relative flex-grow bg-black overflow-hidden">    
+        <main className="relative flex-grow bg-black overflow-hidden">
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
+          <div className="absolute inset-0 hero-grid-animation" style={{
+            backgroundImage: `
+              linear-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.15) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}></div>
+        </div>
+
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className={`absolute ${particle.size} rounded-full hero-particle ${
+                particle.id % 3 === 0 ? 'bg-pink-400/60' : 
+                particle.id % 3 === 1 ? 'bg-purple-400/60' : 'bg-indigo-400/60'
+              }`}
+              style={{
+                left: particle.left,
+                top: particle.top,
+                animationDelay: particle.delay,
+                animationDuration: particle.duration
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Tech Lines */}
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-pink-500/40 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-500/40 to-transparent"></div>
+        <div className="absolute top-0 left-0 h-full w-0.5 bg-gradient-to-b from-transparent via-indigo-500/30 to-transparent"></div>
+        <div className="absolute top-0 right-0 h-full w-0.5 bg-gradient-to-b from-transparent via-pink-500/30 to-transparent"></div>
+
         {/* Large circular glow - bottom area */}
-        <div className="absolute bottom-10 left-20 w-96 h-96 bg-indigo-600/40 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-20 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl animate-pulse-slow"></div>
         
         {/* Medium circular glow - top area */}
-        <div className="absolute top-20 right-32 w-80 h-80 bg-pink-600/40 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-32 w-80 h-80 bg-pink-600/30 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
         
         {/* Small accent - middle left */}
-        <div className="absolute top-1/3 left-32 w-64 h-64 bg-purple-600/30 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-32 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        
+        {/* Rotating gradient orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl hero-spin-slow" style={{
+          background: 'conic-gradient(from 0deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1))'
+        }}></div>
         
         {/* Diagonal beam effect - center */}
-        <div className="absolute top-1/4 right-1/4 w-96 h-32 bg-gradient-to-r from-indigo-500/20 via-purple-500/30 to-pink-500/20 blur-2xl rotate-45"></div>
+        <div className="absolute top-1/4 right-1/4 w-96 h-32 bg-gradient-to-r from-indigo-500/20 via-purple-500/30 to-pink-500/20 blur-2xl rotate-45 animate-pulse-slow"></div>
         <div className="container mx-auto px-6 py-20">
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
             {/* Left Column - Text Content */}
             <div 
               data-section-id="hero-text"
-              className="text-center lg:text-left space-y-6 px-4 lg:px-0"
+              className="text-center lg:text-left space-y-6 px-4 lg:px-0 relative"
             >
+              {/* Decorative Line */}
+              <div className="hidden lg:block absolute -left-6 top-0 w-1 h-40 bg-gradient-to-b from-pink-500 via-purple-500 to-indigo-500 rounded-full hero-glow"></div>
+              
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-full animate-fadeInDown hero-glow-badge" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
+                <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">AI-Powered Solutions</span>
+              </div>
+              
               <h1 className="hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
                 <span className="block mb-4 sm:mb-6 md:mb-8 lg:mb-10 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                   Accelerating
@@ -108,6 +169,31 @@ function Hero() {
               <p className="text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto animate-fadeInUp" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
                 From concept to product, we make it happen
               </p>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start animate-fadeInUp" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
+                <a 
+                  href="/products"
+                  className="group relative px-8 py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/25"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Explore Products
+                    <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                <a 
+                  href="/contact"
+                  className="px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white hover:bg-white/10 hover:border-pink-500/50 transition-all duration-300 flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  Contact Us
+                </a>
+              </div>
             </div>
 
             {/* Right Column - Modern Feature Showcase */}
@@ -304,18 +390,27 @@ function Hero() {
           {/* Client Logos Section */}
           <div 
             data-section-id="client-logos"
-            className={`relative overflow-hidden max-w-6xl mx-auto mt-16 transition-all duration-1000 ${
+            className={`relative overflow-hidden max-w-6xl mx-auto mt-20 transition-all duration-1000 ${
               visibleSections.has('client-logos')
                 ? 'opacity-100 translate-y-0 scale-100'
                 : 'opacity-0 translate-y-12 scale-95'
             }`}
             style={{ transitionDelay: '0.2s' }}
           >
+            {/* Section Title */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 px-6 py-2 bg-white/5 border border-white/10 rounded-full">
+                <div className="w-8 h-0.5 bg-gradient-to-r from-transparent to-pink-500"></div>
+                <span className="text-sm text-gray-400 uppercase tracking-wider font-medium">Trusted By</span>
+                <div className="w-8 h-0.5 bg-gradient-to-l from-transparent to-purple-500"></div>
+              </div>
+            </div>
+
             {/* Infinite Scrolling Logos */}
             <div className="relative">
               {/* Gradient overlays for fade effect */}
-              {/* <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div> */}
+              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
               
               {/* Scrolling container */}
               <div className="flex items-center animate-scroll">
@@ -323,26 +418,33 @@ function Hero() {
                 {clients.map((client, index) => (
                   <div 
                     key={`first-${index}`}
-                    className="flex-shrink-0 mx-12 h-24 flex items-center justify-center"
+                    className="flex-shrink-0 mx-12 h-24 flex items-center justify-center group"
                   >
-                    <img 
-                      src={client.logo} 
-                      alt={client.name}
-                      className={`${client.name === "HeroBots" ? "h-24" : "h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300`}
-                    />
+                    <div className="relative">
+                      <img 
+                        src={client.logo} 
+                        alt={client.name}
+                        className={`${client.name === "HeroBots" ? "h-24" : "h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}
+                      />
+                      {/* Hover glow */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-purple-500/20 to-indigo-500/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                    </div>
                   </div>
                 ))}
                 {/* Duplicate set for seamless loop */}
                 {clients.map((client, index) => (
                   <div 
                     key={`second-${index}`}
-                    className="flex-shrink-0 mx-12 h-24 flex items-center justify-center"
+                    className="flex-shrink-0 mx-12 h-24 flex items-center justify-center group"
                   >
-                    <img 
-                      src={client.logo} 
-                      alt={client.name}
-                      className={`${client.name === "HeroBots" ? "h-24" : "h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300`}
-                    />
+                    <div className="relative">
+                      <img 
+                        src={client.logo} 
+                        alt={client.name}
+                        className={`${client.name === "HeroBots" ? "h-24" : "h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-purple-500/20 to-indigo-500/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                    </div>
                   </div>
                 ))}
               </div>
