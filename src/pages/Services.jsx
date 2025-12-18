@@ -208,13 +208,13 @@ function Services() {
                   <svg className="w-7 h-7 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
                   </svg>
-                </div>
-                
+            </div>
+
                 <div className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-3`}>
                   {stat.value}
-                </div>
-                <div className="text-gray-400 text-lg">{stat.label}</div>
               </div>
+                <div className="text-gray-400 text-lg">{stat.label}</div>
+            </div>
             ))}
           </div>
         </div>
@@ -332,17 +332,17 @@ function Services() {
                   <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} rounded-xl flex items-center justify-center`}>
                     <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
-                    </svg>
-                  </div>
-                </div>
+                </svg>
+              </div>
+            </div>
 
                 <h3 className={`text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${item.gradient} group-hover:bg-clip-text transition-all duration-300`}>
                   {item.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
                   {item.desc}
-                </p>
-              </div>
+              </p>
+            </div>
             ))}
           </div>
         </div>
@@ -395,10 +395,10 @@ function Services() {
                 <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Transform</span>
                 <br />
                 <span className="text-white">Your Business?</span>
-              </h2>
+            </h2>
               <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                Let's discuss how our services can drive innovation and growth for your organization.
-              </p>
+              Let's discuss how our services can drive innovation and growth for your organization.
+            </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
@@ -423,7 +423,7 @@ function Services() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </span>
-                </Link>
+            </Link>
               </div>
 
               {/* Trust Indicators */}

@@ -697,14 +697,14 @@ function Products() {
                   <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">Get Started Today</span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
                   <span className="text-white">Ready to </span>
                   <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">Transform</span>
                   <span className="text-white"> Your Business?</span>
-                </h2>
+            </h2>
                 <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                  Get in touch with our team to discuss how our products can help you achieve your goals
-                </p>
+              Get in touch with our team to discuss how our products can help you achieve your goals
+            </p>
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -712,7 +712,7 @@ function Products() {
                     to="/contact" 
                     className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 rounded-lg"
                   >
-                    Contact Us Today
+              Contact Us Today
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -725,7 +725,7 @@ function Products() {
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </Link>
+            </Link>
                 </div>
 
                 {/* Trust Indicators */}

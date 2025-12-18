@@ -86,7 +86,10 @@ function ContactUs() {
         type: 'error',
         message: 'An error occurred. Please try again later.'
       });
-      console.error('Error sending email:', error);
+      // Only log in development
+      if (import.meta.env.DEV) {
+        console.error('Error sending email:', error);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -268,6 +271,7 @@ function ContactUs() {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      maxLength={100}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300"
                       placeholder="John Doe"
                     />
@@ -297,6 +301,7 @@ function ContactUs() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      maxLength={20}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300"
                       placeholder="+60 123456789"
                     />
@@ -327,6 +332,7 @@ function ContactUs() {
                       onChange={handleChange}
                       required
                       rows="5"
+                      maxLength={5000}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300 resize-none"
                       placeholder="Tell us about your project..."
                     ></textarea>

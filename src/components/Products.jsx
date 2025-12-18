@@ -129,8 +129,24 @@ function Products() {
   return (
     <>
       <style>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, rgba(236, 72, 153, 0.5), rgba(139, 92, 246, 0.5));
+          border-radius: 10px;
+          transition: background 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, rgba(236, 72, 153, 0.8), rgba(139, 92, 246, 0.8));
+        }
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(236, 72, 153, 0.5) rgba(255, 255, 255, 0.05);
         }
         @keyframes gridMove {
           0% { transform: translate(0, 0); }
@@ -247,9 +263,9 @@ function Products() {
                   <div key={idx} className={`group cursor-pointer text-center sm:text-left p-4 rounded-xl border ${item.borderColor} ${item.hoverBg} transition-all duration-300 hover:scale-105`}>
                     <div className={`text-3xl sm:text-4xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300`} style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                       {item.text}
-                    </div>
-                    <p className="text-gray-400 text-xs sm:text-[10px] uppercase tracking-widest">{item.desc}</p>
                   </div>
+                    <p className="text-gray-400 text-xs sm:text-[10px] uppercase tracking-widest">{item.desc}</p>
+                </div>
                 ))}
               </div>
             </div>
@@ -257,11 +273,7 @@ function Products() {
 
           {/* Right Side - Scrollable Products */}
           <div 
-            className="h-[600px] overflow-y-auto space-y-4 hide-scrollbar"
-            style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-            }}
+            className="h-[600px] overflow-y-auto space-y-4 custom-scrollbar pr-2"
           >
             {products.map((product, index) => (
               <div
@@ -287,7 +299,7 @@ function Products() {
                     {product.description}
                   </p>
                   
-                  <Link
+                  <Link 
                     to={product.link}
                     className={`inline-block px-8 py-3 bg-gradient-to-r ${product.gradient} text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl`}
                   >
@@ -313,8 +325,8 @@ function Products() {
               <div className="w-8 h-0.5 bg-gradient-to-r from-transparent to-indigo-500"></div>
               <span className="text-sm text-gray-400 uppercase tracking-wider font-medium">Our Track Record</span>
               <div className="w-8 h-0.5 bg-gradient-to-l from-transparent to-purple-500"></div>
+              </div>
             </div>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
@@ -337,13 +349,13 @@ function Products() {
                   <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
                   </svg>
-                </div>
-                
+            </div>
+
                 <div className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-2`}>
                   {stat.value}
-                </div>
-                <div className="text-gray-400 text-lg">{stat.label}</div>
               </div>
+                <div className="text-gray-400 text-lg">{stat.label}</div>
+            </div>
             ))}
           </div>
         </div>

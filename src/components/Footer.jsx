@@ -57,7 +57,10 @@ function Footer() {
         type: 'error',
         message: 'An error occurred. Please try again.'
       });
-      console.error('Error sending email:', error);
+      // Only log in development
+      if (import.meta.env.DEV) {
+        console.error('Error sending email:', error);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -171,6 +174,7 @@ function Footer() {
                   onChange={handleChange}
                   placeholder="Your Name"
                   required
+                  maxLength={100}
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300"
                 />
               </div>
@@ -182,6 +186,7 @@ function Footer() {
                   onChange={handleChange}
                   placeholder="Your Email"
                   required
+                  maxLength={255}
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300"
                 />
               </div>
@@ -193,6 +198,7 @@ function Footer() {
                   onChange={handleChange}
                   placeholder="Subject"
                   required
+                  maxLength={200}
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300"
                 />
               </div>
@@ -204,6 +210,7 @@ function Footer() {
                   placeholder="Your Message"
                   rows="4"
                   required
+                  maxLength={5000}
                   className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300 resize-none"
                 ></textarea>
               </div>

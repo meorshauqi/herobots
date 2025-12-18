@@ -50,7 +50,7 @@ function Header() {
                 to="/products" 
                 className={`text-white/90 hover:text-white transition-all duration-300 font-medium relative ${location.pathname === '/products' || location.pathname.startsWith('/products/') ? 'text-white' : ''}`}
               >
-                Products
+              Products
                 <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/products' || location.pathname.startsWith('/products/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
               </Link>
               <div 
@@ -93,7 +93,7 @@ function Header() {
                     onClick={closeMenu}
                   >
                     Visitor Management System
-                  </Link>
+            </Link>
                 </div>
               </div>
             </div>
@@ -127,9 +127,9 @@ function Header() {
 
         {/* Mobile Navigation Menu */}
         <div 
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+          } overflow-y-auto`}
         >
           <nav className="flex flex-col space-y-4 pt-6 pb-4">
             <Link 
@@ -150,7 +150,7 @@ function Header() {
             >
               About
             </Link>
-            <div>
+            <div className="relative">
               <div className="flex items-center">
                 <Link 
                   to="/products" 
@@ -182,43 +182,43 @@ function Header() {
                 </button>
               </div>
               <div 
-                className={`overflow-hidden transition-all duration-300 ${
-                  isMobileProductsDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isMobileProductsDropdownOpen ? 'max-h-[400px] opacity-100 mt-2' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="pl-6 py-2 space-y-2">
+                <div className="pl-6 pr-4 py-2 space-y-2">
                   <Link 
                     to="/products/heroworks" 
                     onClick={closeMenu}
-                    className="block text-white/80 hover:text-white transition-all duration-200 py-1 px-4 rounded-lg hover:bg-white/10"
+                    className="block text-white/80 hover:text-white transition-all duration-200 py-2 px-4 rounded-lg hover:bg-white/10"
                   >
                     HeroWorks
                   </Link>
                   <Link 
                     to="/products/ai-security" 
                     onClick={closeMenu}
-                    className="block text-white/80 hover:text-white transition-all duration-200 py-1 px-4 rounded-lg hover:bg-white/10"
+                    className="block text-white/80 hover:text-white transition-all duration-200 py-2 px-4 rounded-lg hover:bg-white/10"
                   >
                     AI Security & Safety Surveillance
                   </Link>
                   <Link 
                     to="/products/smart-patrolling" 
                     onClick={closeMenu}
-                    className="block text-white/80 hover:text-white transition-all duration-200 py-1 px-4 rounded-lg hover:bg-white/10"
+                    className="block text-white/80 hover:text-white transition-all duration-200 py-2 px-4 rounded-lg hover:bg-white/10"
                   >
                     Smart Patrolling
                   </Link>
                   <Link 
                     to="/products/licence-plate-recognition" 
                     onClick={closeMenu}
-                    className="block text-white/80 hover:text-white transition-all duration-200 py-1 px-4 rounded-lg hover:bg-white/10"
+                    className="block text-white/80 hover:text-white transition-all duration-200 py-2 px-4 rounded-lg hover:bg-white/10"
                   >
                     Licence Plate Recognition
                   </Link>
                   <Link 
                     to="/products/visitor-management" 
                     onClick={closeMenu}
-                    className="block text-white/80 hover:text-white transition-all duration-200 py-1 px-4 rounded-lg hover:bg-white/10"
+                    className="block text-white/80 hover:text-white transition-all duration-200 py-2 px-4 rounded-lg hover:bg-white/10"
                   >
                     Visitor Management System
                   </Link>

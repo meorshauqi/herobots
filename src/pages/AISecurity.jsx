@@ -637,25 +637,25 @@ function AISecurity() {
               {/* Navigation Buttons */}
               <button
                 onClick={goToFeaturePrevious}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                className="absolute -left-2 md:left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/70 md:bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
                 aria-label="Previous feature"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button
                 onClick={goToFeatureNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                className="absolute -right-2 md:right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/70 md:bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
                 aria-label="Next feature"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
 
               {/* Progress Indicator - Above carousel */}
-              <div className="flex justify-center mb-8">
+              <div className="flex justify-center mb-6 md:mb-8">
                 <div className="flex items-center gap-2">
                   {keyFeatures.map((_, idx) => (
                     <button
@@ -672,64 +672,41 @@ function AISecurity() {
                 </div>
               </div>
 
-              {/* Carousel Track */}
-              <div className="overflow-hidden px-8 md:px-16">
-                <div 
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ 
-                    transform: `translateX(calc(33.333% - ${activeFeatureIndex * 33.333}%))`,
-                    minHeight: '500px'
-                  }}
-                >
-                  {keyFeatures.map((feature, index) => {
-                    const isActive = index === activeFeatureIndex;
-                    const prevIndex = activeFeatureIndex === 0 ? keyFeatures.length - 1 : activeFeatureIndex - 1;
-                    const nextIndex = activeFeatureIndex === keyFeatures.length - 1 ? 0 : activeFeatureIndex + 1;
-                    const isPrevious = index === prevIndex;
-                    const isNext = index === nextIndex;
-                    
-                    return (
-                      <div
-                        key={index}
-                        className="w-1/3 flex-shrink-0 px-2 md:px-4 flex items-center"
-                      >
+              {/* Carousel Track - Mobile: 1 card, Desktop: 3 cards */}
+              <div className="overflow-hidden px-4 md:px-16">
+                {/* Mobile View - Single Card */}
+                <div className="md:hidden">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ 
+                      transform: `translateX(-${activeFeatureIndex * 100}%)`
+                    }}
+                  >
+                    {keyFeatures.map((feature, index) => {
+                      const isActive = index === activeFeatureIndex;
+                      return (
                         <div
-                          className={`group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border transition-all duration-500 p-6 md:p-8 w-full ${
-                            isActive 
-                              ? 'border-white/30 scale-100 shadow-2xl z-10 opacity-100' 
-                              : isPrevious
-                              ? 'border-white/10 scale-90 opacity-40 blur-sm'
-                              : isNext
-                              ? 'border-white/10 scale-90 opacity-40 blur-sm'
-                              : 'opacity-0 pointer-events-none'
-                          }`}
-                          style={{ minHeight: '450px' }}
+                          key={index}
+                          className="w-full flex-shrink-0 px-2"
                         >
-                          {/* Gradient border */}
-                          <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} ${isActive ? 'opacity-10' : 'opacity-0'} transition-opacity duration-500`}></div>
-                          <div className={`absolute top-0 left-0 h-full w-1 bg-gradient-to-b ${feature.gradient}`}></div>
-                          
-                          <div className="relative z-10">
-                            <h3 className={`text-xl md:text-2xl font-bold mb-3 bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent text-center transition-all duration-700 ${
-                              isActive ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-sm translate-y-4'
+                          <div
+                            className={`group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/20 transition-all duration-500 p-6 w-full rounded-xl ${
+                              isActive ? 'opacity-100' : 'opacity-50'
                             }`}
-                            style={{ transitionDelay: '0.3s' }}>
-                              {feature.title}
-                            </h3>
-                            <p className={`text-gray-300 text-sm md:text-base mb-4 leading-relaxed text-center transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${isActive ? '' : 'line-clamp-3'}`}
-                            style={{ transitionDelay: '0.5s' }}>
-                              {feature.description}
-                            </p>
-                            {isActive && (
-                              <ul className="space-y-2 max-w-xl mx-auto">
+                          >
+                            <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-10 rounded-xl`}></div>
+                            <div className={`absolute top-0 left-0 h-full w-1 bg-gradient-to-b ${feature.gradient} rounded-l-xl`}></div>
+                            
+                            <div className="relative z-10">
+                              <h3 className={`text-xl font-bold mb-3 bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent text-center`}>
+                                {feature.title}
+                              </h3>
+                              <p className="text-gray-300 text-sm mb-4 leading-relaxed text-center">
+                                {feature.description}
+                              </p>
+                              <ul className="space-y-2">
                                 {feature.details.map((detail, idx) => (
-                                  <li 
-                                    key={idx} 
-                                    className="flex items-start text-xs md:text-sm text-gray-400 transition-all duration-500"
-                                    style={{
-                                      animation: `fadeInLeft 0.5s ease-out ${0.7 + (idx * 0.1)}s both`
-                                    }}
-                                  >
+                                  <li key={idx} className="flex items-start text-xs text-gray-400">
                                     <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                                     </svg>
@@ -737,12 +714,74 @@ function AISecurity() {
                                   </li>
                                 ))}
                               </ul>
-                            )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Desktop View - 3 Cards - All Visible */}
+                <div className="hidden md:block">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ 
+                      transform: `translateX(calc(33.333% - ${activeFeatureIndex * 33.333}%))`,
+                      minHeight: '500px'
+                    }}
+                  >
+                    {keyFeatures.map((feature, index) => {
+                      const isActive = index === activeFeatureIndex;
+                      const prevIndex = activeFeatureIndex === 0 ? keyFeatures.length - 1 : activeFeatureIndex - 1;
+                      const nextIndex = activeFeatureIndex === keyFeatures.length - 1 ? 0 : activeFeatureIndex + 1;
+                      const isPrevious = index === prevIndex;
+                      const isNext = index === nextIndex;
+                      
+                      return (
+                        <div
+                          key={index}
+                          className="w-1/3 flex-shrink-0 px-4 flex items-center"
+                        >
+                          <div
+                            className={`group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border transition-all duration-500 p-6 md:p-8 w-full rounded-xl ${
+                              isActive 
+                                ? 'border-white/30 scale-100 shadow-2xl z-10 opacity-100' 
+                                : isPrevious || isNext
+                                ? 'border-white/10 scale-95 opacity-70'
+                                : 'border-white/5 scale-90 opacity-50'
+                            }`}
+                            style={{ minHeight: '450px' }}
+                          >
+                            <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-xl ${isActive ? 'opacity-10' : isPrevious || isNext ? 'opacity-5' : 'opacity-3'} transition-opacity duration-500`}></div>
+                            <div className={`absolute top-0 left-0 h-full w-1 bg-gradient-to-b ${feature.gradient} rounded-l-xl ${isActive ? 'opacity-100' : 'opacity-50'}`}></div>
+                            
+                            <div className="relative z-10">
+                              <h3 className={`${isActive ? 'text-2xl' : isPrevious || isNext ? 'text-xl' : 'text-lg'} font-bold mb-3 bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent text-center transition-all duration-300`}>
+                                {feature.title}
+                              </h3>
+                              <p className={`text-gray-300 ${isActive ? 'text-base' : 'text-sm'} mb-4 leading-relaxed text-center transition-all duration-300`}>
+                                {feature.description}
+                              </p>
+                              <ul className="space-y-2 max-w-xl mx-auto">
+                                {feature.details.map((detail, idx) => (
+                                  <li 
+                                    key={idx} 
+                                    className={`flex items-start ${isActive ? 'text-sm' : 'text-xs'} text-gray-400 transition-all duration-300`}
+                                  >
+                                    <svg className={`${isActive ? 'w-4 h-4' : 'w-3 h-3'} text-green-500 mr-2 mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                                    </svg>
+                                    <span>{detail}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

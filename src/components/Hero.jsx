@@ -85,7 +85,7 @@ function Hero() {
 
   
     return (
-        <main className="relative flex-grow bg-black overflow-hidden">
+        <main className="relative flex-grow bg-black overflow-hidden">    
         {/* Animated Grid Background */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <div className="absolute inset-0 hero-grid-animation" style={{
@@ -150,33 +150,34 @@ function Hero() {
               <div className="hidden lg:block absolute -left-6 top-0 w-1 h-40 bg-gradient-to-b from-pink-500 via-purple-500 to-indigo-500 rounded-full hero-glow"></div>
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-full animate-fadeInDown hero-glow-badge" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-full animate-fadeInDown hero-glow-badge mb-6 sm:mb-8 md:mb-10" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
                 <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></div>
                 <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">AI-Powered Solutions</span>
               </div>
               
-              <h1 className="hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
-                <span className="block mb-4 sm:mb-6 md:mb-8 lg:mb-10 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+              <h1 className="hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+                <span className="block mb-3 sm:mb-4 md:mb-5 lg:mb-6 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                   Accelerating
                 </span>
-                <span className="block mb-4 sm:mb-6 md:mb-8 lg:mb-10 animate-fadeInDown" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+                <span className="block mb-3 sm:mb-4 md:mb-5 lg:mb-6 animate-fadeInDown" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
                   The Future With
                 </span>
-                <span className="block mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-fadeInDown" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+                <span className="block animate-fadeInDown" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
                   Cutting-edge Solutions
                 </span>
               </h1>            
-              <p className="text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto animate-fadeInUp" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
+              
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto mb-8 sm:mb-10 md:mb-12 animate-fadeInUp" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
                 From concept to product, we make it happen
               </p>
               
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start animate-fadeInUp" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-4 justify-center lg:justify-start animate-fadeInUp" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
                 <a 
                   href="/products"
-                  className="group relative px-8 py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/25"
+                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/25 text-center sm:text-left"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
+                  <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2">
                     Explore Products
                     <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -186,7 +187,7 @@ function Hero() {
                 </a>
                 <a 
                   href="/contact"
-                  className="px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white hover:bg-white/10 hover:border-pink-500/50 transition-all duration-300 flex items-center gap-2"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white hover:bg-white/10 hover:border-pink-500/50 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -253,13 +254,13 @@ function Hero() {
                     backgroundSize: '30px 30px'
                   }}></div>
 
-                  <div className="relative aspect-[4/3]">
-                    <img 
-                      src={services[activeIndex].image} 
-                      alt={services[activeIndex].name}
-                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                    />
-                    {/* Gradient Overlay */}
+                <div className="relative aspect-[4/3]">
+                  <img 
+                    src={services[activeIndex].image} 
+                    alt={services[activeIndex].name}
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                  />
+                  {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-purple-500/10"></div>
                     
                     {/* Now Viewing Badge */}
@@ -276,16 +277,16 @@ function Hero() {
                         <span className="text-gray-400">{String(services.length).padStart(2, '0')}</span>
                       </span>
                     </div>
-                    
+                  
                     {/* Content Overlay - Enhanced */}
                     <div className={`absolute bottom-0 left-0 right-0 p-6 transition-all duration-700 z-20 ${
-                      visibleSections.has('hero-showcase')
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-8'
-                    }`}
-                    style={{ transitionDelay: '0.8s' }}>                      
+                    visibleSections.has('hero-showcase')
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: '0.8s' }}>
                       <div className="flex items-end justify-between">
-                        <div className="space-y-2">
+                    <div className="space-y-2">
                           <div className="flex items-center gap-2">
                             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
                               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,12 +294,12 @@ function Hero() {
                               </svg>
                             </div>
                             <h3 className="text-xl font-bold text-white">
-                              {services[activeIndex].name}
-                            </h3>
+                        {services[activeIndex].name}
+                      </h3>
                           </div>
                           <p className="text-gray-300 text-sm pl-10">
-                            {services[activeIndex].description}
-                          </p>
+                        {services[activeIndex].description}
+                      </p>
                         </div>
                         
                         {/* Tech Badge */}
@@ -308,26 +309,26 @@ function Hero() {
                           </svg>
                           <span className="text-xs text-gray-300">AI Powered</span>
                         </div>
-                      </div>
                     </div>
+                  </div>
 
                     {/* Navigation Arrows - Enhanced */}
-                    <button 
-                      onClick={() => setActiveIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1))}
+                  <button 
+                    onClick={() => setActiveIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1))}
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-pink-500/30 hover:border-pink-500/50 transition-all duration-300 hover:scale-110 z-20 group/btn"
-                    >
+                  >
                       <svg className="w-5 h-5 group-hover/btn:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                       </svg>
-                    </button>
-                    <button 
-                      onClick={() => setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1))}
+                  </button>
+                  <button 
+                    onClick={() => setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1))}
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-pink-500/30 hover:border-pink-500/50 transition-all duration-300 hover:scale-110 z-20 group/btn"
-                    >
+                  >
                       <svg className="w-5 h-5 group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </button>
+                  </button>
                   </div>
                 </div>
               </div>
@@ -408,9 +409,9 @@ function Hero() {
 
             {/* Infinite Scrolling Logos */}
             <div className="relative">
-              {/* Gradient overlays for fade effect */}
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+              {/* Gradient overlays for fade effect - Narrower on mobile */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
               
               {/* Scrolling container */}
               <div className="flex items-center animate-scroll">
@@ -418,14 +419,14 @@ function Hero() {
                 {clients.map((client, index) => (
                   <div 
                     key={`first-${index}`}
-                    className="flex-shrink-0 mx-12 h-24 flex items-center justify-center group"
+                    className="flex-shrink-0 mx-4 md:mx-12 h-16 md:h-24 flex items-center justify-center group"
                   >
                     <div className="relative">
-                      <img 
-                        src={client.logo} 
-                        alt={client.name}
-                        className={`${client.name === "HeroBots" ? "h-24" : "h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}
-                      />
+                    <img 
+                      src={client.logo} 
+                      alt={client.name}
+                        className={`${client.name === "HeroBots" ? "h-16 md:h-24" : "h-12 md:h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-70 md:opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}
+                    />
                       {/* Hover glow */}
                       <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-purple-500/20 to-indigo-500/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
                     </div>
@@ -435,14 +436,14 @@ function Hero() {
                 {clients.map((client, index) => (
                   <div 
                     key={`second-${index}`}
-                    className="flex-shrink-0 mx-12 h-24 flex items-center justify-center group"
+                    className="flex-shrink-0 mx-4 md:mx-12 h-16 md:h-24 flex items-center justify-center group"
                   >
                     <div className="relative">
-                      <img 
-                        src={client.logo} 
-                        alt={client.name}
-                        className={`${client.name === "HeroBots" ? "h-24" : "h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}
-                      />
+                    <img 
+                      src={client.logo} 
+                      alt={client.name}
+                        className={`${client.name === "HeroBots" ? "h-16 md:h-24" : "h-12 md:h-16"} w-auto object-contain filter grayscale brightness-0 invert opacity-70 md:opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}
+                    />
                       <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-purple-500/20 to-indigo-500/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
                     </div>
                   </div>
