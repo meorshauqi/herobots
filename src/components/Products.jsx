@@ -20,6 +20,13 @@ function Products() {
     projects: 0,
   });
 
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const scrollableProductsRef = useRef(null);
+  const productRefs = useRef([]);
+  
+  // Initialize productPositions with default evenly distributed positions (5 products)
+  const [productPositions, setProductPositions] = useState([0, 25, 50, 75, 100]);
+
   // Generate stable particle positions
   const particles = useMemo(() => 
     [...Array(20)].map((_, i) => ({
@@ -87,6 +94,152 @@ function Products() {
       return () => clearInterval(timer);
     }
   }, [isVisible.stats]);
+
+  // Track scroll position for pagination dots
+  useEffect(() => {
+    const scrollContainer = scrollableProductsRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const containerTop = scrollContainer.scrollTop;
+      const containerHeight = scrollContainer.clientHeight;
+      const containerScrollHeight = scrollContainer.scrollHeight;
+      const scrollBottom = containerTop + containerHeight;
+      const viewportTop = containerTop;
+      const viewportBottom = containerTop + containerHeight;
+
+      // Check which product is at the top of the viewport
+      let topProductIndex = 0;
+      let topProductDistance = Infinity;
+
+      productRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          const containerRect = scrollContainer.getBoundingClientRect();
+          
+          // Get product position relative to scroll container
+          const productTop = rect.top - containerRect.top + containerTop;
+          const productBottom = productTop + rect.height;
+          
+          // Check if this product is visible at the top of viewport
+          if (productTop <= viewportTop + 50 && productBottom >= viewportTop) {
+            const distance = Math.abs(productTop - viewportTop);
+            if (distance < topProductDistance) {
+              topProductDistance = distance;
+              topProductIndex = index;
+            }
+          }
+        }
+      });
+
+      // If at the very top (scrollTop is 0 or very close), always use first product
+      if (containerTop <= 5) {
+        setCurrentProductIndex(0);
+        return;
+      }
+
+      // If at the very bottom, use last product
+      if (scrollBottom >= containerScrollHeight - 5) {
+        const lastIndex = productRefs.current.length - 1;
+        setCurrentProductIndex(lastIndex);
+        return;
+      }
+
+      // Otherwise, use the product at the top of viewport
+      setCurrentProductIndex(topProductIndex);
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll);
+    
+    // Run immediately and multiple times to ensure accurate detection
+    handleScroll();
+    const timeout1 = setTimeout(handleScroll, 100);
+    const timeout2 = setTimeout(handleScroll, 300);
+    const timeout3 = setTimeout(() => {
+      // Force first product if still at top
+      if (scrollContainer.scrollTop <= 5) {
+        setCurrentProductIndex(0);
+      }
+      handleScroll();
+    }, 500);
+
+    return () => {
+      scrollContainer.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+      clearTimeout(timeout3);
+    };
+  }, [isVisible.products]);
+
+  // Calculate product positions for dot alignment
+  useEffect(() => {
+    if (!isVisible.products) return;
+
+    const calculatePositions = () => {
+      try {
+        const container = scrollableProductsRef.current;
+        if (!container) return;
+
+        const refs = productRefs.current;
+        if (!refs || refs.length === 0) return;
+
+        const positions = refs.map((ref, index) => {
+          if (ref && container) {
+            try {
+              const containerRect = container.getBoundingClientRect();
+              const refRect = ref.getBoundingClientRect();
+              if (containerRect && refRect) {
+                const relativeTop = refRect.top - containerRect.top + container.scrollTop;
+                const productCenter = relativeTop + refRect.height / 2;
+                const containerHeight = container.scrollHeight;
+                if (containerHeight > 0) {
+                  return Math.max(0, Math.min(100, (productCenter / containerHeight) * 100));
+                }
+              }
+            } catch (e) {
+              // Fallback if calculation fails
+            }
+          }
+          // Fallback: evenly distribute (5 products = 0, 25, 50, 75, 100)
+          return (index / 5) * 100;
+        });
+
+        if (positions.length > 0) {
+          setProductPositions(positions);
+        }
+      } catch (error) {
+        // Silently fail - use default positions
+        console.error('Error calculating product positions:', error);
+      }
+    };
+
+    // Wait for products to render, then calculate positions
+    const timeoutId = setTimeout(calculatePositions, 300);
+    // Recalculate on window resize
+    window.addEventListener('resize', calculatePositions);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', calculatePositions);
+    };
+  }, [isVisible.products]);
+
+  // Scroll to specific product
+  const scrollToProduct = (index) => {
+    const ref = productRefs.current[index];
+    if (ref && scrollableProductsRef.current) {
+      const container = scrollableProductsRef.current;
+      const containerTop = container.scrollTop;
+      const containerRect = container.getBoundingClientRect();
+      const refRect = ref.getBoundingClientRect();
+      const relativeTop = refRect.top - containerRect.top + containerTop;
+      
+      container.scrollTo({
+        top: relativeTop - 20, // 20px offset from top
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const products = [
     {
@@ -272,17 +425,44 @@ function Products() {
           </div>
 
           {/* Right Side - Scrollable Products */}
-          <div 
-            className="h-[600px] overflow-y-auto space-y-4 custom-scrollbar pr-2"
-          >
-            {products.map((product, index) => (
-              <div
-                key={product.id}
-                className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 ${
-                  isVisible.products ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
+          <div className="relative">
+            {/* Pagination Dots - Vertical on Left */}
+            {products.length > 0 && (
+              <div className="absolute left-0 top-0 -translate-x-8 z-10 w-4" style={{ height: '600px' }}>
+                {products.map((_, index) => {
+                  const position = (productPositions[index] !== undefined && productPositions.length > 0)
+                    ? productPositions[index] 
+                    : (index / products.length) * 100;
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => scrollToProduct(index)}
+                      className={`absolute left-1/2 -translate-x-1/2 transition-all duration-300 rounded-full ${
+                        index === currentProductIndex
+                          ? 'w-3 h-3 bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg shadow-pink-500/50'
+                          : 'w-2 h-2 bg-white/30 hover:bg-white/50'
+                      }`}
+                      style={{ top: `${Math.max(0, Math.min(100, position))}%` }}
+                      aria-label={`Go to product ${index + 1}`}
+                    />
+                  );
+                })}
+              </div>
+            )}
+
+            <div 
+              ref={scrollableProductsRef}
+              className="h-[600px] overflow-y-auto space-y-4 custom-scrollbar pr-2"
+            >
+              {products.map((product, index) => (
+                <div
+                  key={product.id}
+                  ref={(el) => (productRefs.current[index] = el)}
+                  className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 ${
+                    isVisible.products ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
                 {/* Animated border lines */}
                 <div className={`absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r ${product.gradient} group-hover:w-full transition-all duration-700 ease-out`}></div>
                 <div className={`absolute top-0 right-0 w-0.5 h-0 bg-gradient-to-b ${product.gradient} group-hover:h-full transition-all duration-700 ease-out delay-150`}></div>
@@ -308,6 +488,7 @@ function Products() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         </div>
 

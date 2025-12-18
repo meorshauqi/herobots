@@ -1,7 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import './Hero.css';
 import logo from '../assets/logo/logo.png';
-import prasarana from '../assets/logo/prasarana.png';
 import pbjv from '../assets/logo/pbjv.png';
 import baxtech from '../assets/logo/baxtech.webp';
 import aiSecurity2 from '../assets/services/ai-security-serveillance-2.png';
@@ -16,6 +15,8 @@ function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   // Initialize with hero sections ALREADY visible (fixes mobile Safari issue)
   const [visibleSections, setVisibleSections] = useState(new Set(['hero-text', 'hero-showcase']));
+  const autoRotateIntervalRef = useRef(null);
+  const isInitialMount = useRef(true);
 
   // Generate stable random positions for particles
   const particles = useMemo(() => 
@@ -30,7 +31,6 @@ function Hero() {
 
   const clients = [
     { name: "HeroBots", logo: logo },
-    { name: "Prasarana", logo: prasarana },
     { name: "PBJV", logo: pbjv },
     { name: "Baxtech", logo: baxtech }
   ];
@@ -45,14 +45,57 @@ function Hero() {
     { name: "HeroJaga Mobile Security", image: heroJaga, description: "Next-gen mobile security app" },
   ];
 
-  // Auto-rotate images every 3 seconds
+  // Auto-rotate images every 3 seconds - start after initial delay
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+    // On initial mount, ensure first dot is active
+    if (isInitialMount.current) {
+      setActiveIndex(0);
+      isInitialMount.current = false;
+    }
+    
+    // Clear any existing intervals first
+    if (autoRotateIntervalRef.current) {
+      clearInterval(autoRotateIntervalRef.current);
+      autoRotateIntervalRef.current = null;
+    }
+    
+    // Start auto-rotate after 3 seconds delay (so first service shows for 3 seconds)
+    const startDelay = setTimeout(() => {
+      if (autoRotateIntervalRef.current) {
+        clearInterval(autoRotateIntervalRef.current);
+      }
+      autoRotateIntervalRef.current = setInterval(() => {
+        setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+      }, 3000);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(startDelay);
+      if (autoRotateIntervalRef.current) {
+        clearInterval(autoRotateIntervalRef.current);
+        autoRotateIntervalRef.current = null;
+      }
+    };
   }, [services.length]);
+
+  // Handle manual navigation - pause auto-rotate and restart after delay
+  const handleManualNavigation = (index) => {
+    // Clear auto-rotate
+    if (autoRotateIntervalRef.current) {
+      clearInterval(autoRotateIntervalRef.current);
+      autoRotateIntervalRef.current = null;
+    }
+    
+    // Set the active index
+    setActiveIndex(index);
+    
+    // Restart auto-rotate after 5 seconds
+    setTimeout(() => {
+      autoRotateIntervalRef.current = setInterval(() => {
+        setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+      }, 3000);
+    }, 5000);
+  };
 
   // No longer needed - hero sections are visible by default!
 
@@ -144,22 +187,19 @@ function Hero() {
             {/* Left Column - Text Content */}
             <div 
               data-section-id="hero-text"
-              className="text-center lg:text-left space-y-6 px-4 lg:px-0 relative"
+              className="text-center space-y-6 px-4 relative"
             >
-              {/* Decorative Line */}
-              <div className="hidden lg:block absolute -left-6 top-0 w-1 h-40 bg-gradient-to-b from-pink-500 via-purple-500 to-indigo-500 rounded-full hero-glow"></div>
-              
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-full animate-fadeInDown hero-glow-badge mb-6 sm:mb-8 md:mb-10" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-full animate-fadeInDown hero-glow-badge mb-2 sm:mb-3 md:mb-4" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
                 <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></div>
                 <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">AI-Powered Solutions</span>
               </div>
               
-              <h1 className="hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                <span className="block mb-3 sm:mb-4 md:mb-5 lg:mb-6 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+              <h1 className="hero-gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center">
+                <span className="block mb-4 sm:mb-5 md:mb-6 lg:mb-8 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                   Accelerating
                 </span>
-                <span className="block mb-3 sm:mb-4 md:mb-5 lg:mb-6 animate-fadeInDown" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+                <span className="block mb-3 sm:mb-4 md:mb-5 lg:mb-7 animate-fadeInDown" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
                   The Future With
                 </span>
                 <span className="block animate-fadeInDown" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
@@ -167,17 +207,17 @@ function Hero() {
                 </span>
               </h1>            
               
-              <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-xl lg:mx-0 mx-auto mb-8 sm:mb-10 md:mb-12 animate-fadeInUp" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-xl mx-auto mb-8 sm:mb-10 md:mb-12 animate-fadeInUp" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
                 From concept to product, we make it happen
               </p>
               
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-4 justify-center lg:justify-start animate-fadeInUp" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-4 justify-center animate-fadeInUp" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
                 <a 
                   href="/products"
-                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/25 text-center sm:text-left"
+                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/25 text-center"
                 >
-                  <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
                     Explore Products
                     <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -187,7 +227,7 @@ function Hero() {
                 </a>
                 <a 
                   href="/contact"
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white hover:bg-white/10 hover:border-pink-500/50 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white hover:bg-white/10 hover:border-pink-500/50 transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -314,7 +354,7 @@ function Hero() {
 
                     {/* Navigation Arrows - Enhanced */}
                   <button 
-                    onClick={() => setActiveIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1))}
+                    onClick={() => handleManualNavigation(activeIndex === 0 ? services.length - 1 : activeIndex - 1)}
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-pink-500/30 hover:border-pink-500/50 transition-all duration-300 hover:scale-110 z-20 group/btn"
                   >
                       <svg className="w-5 h-5 group-hover/btn:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,7 +362,7 @@ function Hero() {
                       </svg>
                   </button>
                   <button 
-                    onClick={() => setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1))}
+                    onClick={() => handleManualNavigation(activeIndex === services.length - 1 ? 0 : activeIndex + 1)}
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-pink-500/30 hover:border-pink-500/50 transition-all duration-300 hover:scale-110 z-20 group/btn"
                   >
                       <svg className="w-5 h-5 group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,7 +378,7 @@ function Hero() {
                 {services.map((service, index) => (
                   <button
                     key={index}
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => handleManualNavigation(index)}
                     className={`relative overflow-hidden rounded-xl aspect-square transition-all duration-500 group/thumb ${
                       index === activeIndex 
                         ? 'ring-2 ring-pink-500 scale-110 shadow-lg shadow-pink-500/30' 
