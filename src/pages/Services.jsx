@@ -166,17 +166,17 @@ function Services() {
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full mb-6 services-glow-badge">
             <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
             <span className="text-sm font-mono text-indigo-400 uppercase tracking-wider">What We Offer</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent services-gradient-text">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-500 bg-clip-text text-transparent services-gradient-text">
             Our Services
           </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8 sm:mb-12">
             Comprehensive technology solutions to transform your business
           </p>
 
@@ -210,7 +210,7 @@ function Services() {
                   </svg>
             </div>
 
-                <div className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-3`}>
+                <div className={`text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-3`}>
                   {stat.value}
               </div>
                 <div className="text-gray-400 text-lg">{stat.label}</div>
@@ -237,7 +237,7 @@ function Services() {
               >
                 {/* Content Block */}
                 <div className="w-full md:w-1/2 space-y-6">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-500">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-500">
                     {service.title}
                   </h2>
                   
@@ -298,7 +298,7 @@ function Services() {
               <span className="text-sm font-mono text-purple-400 uppercase tracking-wider">Why Choose Us</span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Why Choose <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Our Services?</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -348,11 +348,11 @@ function Services() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-32 text-center max-w-5xl mx-auto relative">
+        <div className="mt-16 sm:mt-24 md:mt-32 text-center max-w-5xl mx-auto relative px-4 sm:px-6">
           {/* Outer Glow */}
           <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
           
-          <div className="relative bg-gradient-to-br from-gray-900/90 to-black border border-indigo-500/20 p-12 md:p-16 rounded-3xl overflow-hidden">
+          <div className="relative bg-gradient-to-br from-gray-900/90 to-black border border-indigo-500/20 p-6 sm:p-8 md:p-12 lg:p-16 rounded-3xl overflow-hidden">
             {/* Corner Accents */}
             <div className="absolute top-0 left-0 w-20 h-20">
               <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-400 to-transparent"></div>
@@ -415,7 +415,7 @@ function Services() {
                 </Link>
                 <Link 
                   to="/contact"
-                  className="group inline-flex items-center justify-center px-8 py-4 bg-white/5 border border-white/20 text-white font-semibold text-lg rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all duration-300"
+                  className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 text-white font-semibold text-base sm:text-lg rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all duration-300"
                 >
                   <span className="flex items-center gap-2">
                     Contact Us
@@ -427,8 +427,8 @@ function Services() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="mt-12 pt-8 border-t border-white/10">
-                <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm text-gray-500 px-4">
                   {['Free Consultation', 'Custom Solutions', '24/7 Support', 'Fast Turnaround'].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2">
                       <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">

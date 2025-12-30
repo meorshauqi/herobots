@@ -153,12 +153,12 @@ function About() {
       <div className="absolute top-28 right-0 w-80 h-80 bg-pink-600/20 blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/10 blur-3xl"></div>
 
-      <div className="container mx-auto px-6 relative z-10 py-20">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 py-12 sm:py-16 md:py-20">
         {/* Hero Section */}
         <div
           ref={heroRef}
           data-section="hero"
-          className={`relative mb-40 transition-all duration-[1500ms] ease-out ${
+          className={`relative mb-20 sm:mb-32 md:mb-40 transition-all duration-[1500ms] ease-out ${
             isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -170,7 +170,7 @@ function About() {
             
             {/* Main heading with enhanced styling */}
             <div className="relative inline-block mb-12">
-              <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent relative z-10 about-gradient-text">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent relative z-10 about-gradient-text">
                 Who We Are
               </h1>
               {/* Glow effect behind text */}
@@ -206,7 +206,7 @@ function About() {
         </div>
 
         {/* Vision & Mission Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 mb-20 sm:mb-32 md:mb-40">
           {/* Vision */}
           <div
             ref={visionRef}
@@ -233,7 +233,7 @@ function About() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     Our Vision
                   </h2>
                 </div>
@@ -288,7 +288,7 @@ function About() {
         <div
           ref={storyRef}
           data-section="story"
-          className={`mb-40 transition-all duration-[1500ms] ease-out ${
+          className={`mb-20 sm:mb-32 md:mb-40 transition-all duration-[1500ms] ease-out ${
             isVisible.story ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -353,7 +353,7 @@ function About() {
               <span className="text-sm font-mono text-indigo-400 uppercase tracking-wider">Our Team</span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Leadership</span>
               <span className="text-white"> Team</span>
             </h2>
@@ -419,7 +419,7 @@ function About() {
               <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">Core Values</span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               <span className="text-white">Our </span>
               <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Values</span>
             </h2>

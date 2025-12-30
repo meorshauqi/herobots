@@ -226,7 +226,7 @@ function AISecurity() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-10 pb-24 overflow-hidden">
+      <section className="relative pt-16 sm:pt-20 md:pt-24 lg:pt-10 pb-16 sm:pb-20 md:pb-24 overflow-hidden">
         {/* Animated Grid Background */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute inset-0 aisecurity-grid-bg" style={{
@@ -271,7 +271,7 @@ function AISecurity() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* Hero Content - 2 Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="text-left relative">
                 {/* Decorative Line */}
@@ -284,7 +284,7 @@ function AISecurity() {
                 </div>
 
                 <div className="animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                     <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent aisecurity-gradient-text">
                       AI Security
                     </span>
@@ -438,12 +438,12 @@ function AISecurity() {
         
         <div className="container mx-auto px-6 relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-2 mb-6">
               <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">AI Capabilities</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               <span className="text-white">Powerful </span>
               <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Detection Features</span>
             </h2>
@@ -864,12 +864,12 @@ function AISecurity() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-cyan-950/10 to-black"></div>
         <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div 
             data-section-id="cta-section"
             className={`max-w-5xl mx-auto text-center transition-all duration-1000 ${
@@ -881,7 +881,7 @@ function AISecurity() {
             {/* Outer Glow */}
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl animate-pulse-slow"></div>
             
-            <div className="relative bg-gradient-to-br from-gray-900/90 to-black border border-cyan-500/20 rounded-3xl p-12 md:p-16 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-gray-900/90 to-black border border-cyan-500/20 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 overflow-hidden">
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 w-20 h-20">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 to-transparent"></div>
@@ -919,21 +919,21 @@ function AISecurity() {
                   <span className="text-sm font-mono text-cyan-400 uppercase tracking-wider">Get Started Today</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                   <span className="text-white">Ready to </span>
                   <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Secure</span>
                   <br />
                   <span className="text-white">Your Facility?</span>
                 </h2>
                 
-                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
                   Experience the power of AI-driven security surveillance. Schedule a demo or contact us to learn more.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
                   <Link 
                     to="/contact" 
-                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
+                    className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold text-base sm:text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       Request a Demo
@@ -945,7 +945,7 @@ function AISecurity() {
                   </Link>
                   <Link 
                     to="/contact"
-                    className="group inline-flex items-center justify-center px-8 py-4 bg-white/5 border border-white/20 text-white font-semibold text-lg rounded-xl hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-300"
+                    className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 text-white font-semibold text-base sm:text-lg rounded-xl hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-300"
                   >
                     <span className="flex items-center gap-2">
                       Contact Sales
@@ -957,8 +957,8 @@ function AISecurity() {
                 </div>
                 
                 {/* Trust Indicators */}
-                <div className="mt-12 pt-8 border-t border-white/10">
-                  <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+                <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10">
+                  <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm text-gray-500 px-4">
                     <div className="flex items-center gap-2">
                       <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>

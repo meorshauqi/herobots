@@ -13,8 +13,10 @@ RewriteRule . /index.html [L]
 
 # Security Headers
 <IfModule mod_headers.c>
-# Content Security Policy - Adjust as needed for your site
-Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';"
+# Content Security Policy - Tested and optimized for this project
+# Allows: Google Fonts, local resources, inline styles/scripts (required for React/Vite)
+# Blocks: External scripts, unauthorized resources, XSS attacks
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
   
 # Prevent MIME type sniffing
 Header set X-Content-Type-Options "nosniff"
@@ -33,13 +35,13 @@ Header unset Server
 Header unset X-Powered-By
 </IfModule>
 
-# Force HTTPS (uncomment and adjust domain when SSL is configured)
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTPS} off
-#   RewriteCond %{HTTP_HOST} ^(www\.)?herobots\.net$ [NC]
-#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# </IfModule>
+# Force HTTPS - Redirect all HTTP traffic to HTTPS
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond % { HTTPS } off
+RewriteCond % { HTTP_HOST } ^(www\.)?herobots\.net$ [NC]
+RewriteRule ^(.*)$ https://% { HTTP_HOST }% { REQUEST_URI } [L, R=301]
+</IfModule>
 
 # Compression for better performance
 <IfModule mod_deflate.c>

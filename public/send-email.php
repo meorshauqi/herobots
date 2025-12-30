@@ -2,11 +2,44 @@
 // Security: Restrict CORS to your domain only
 // Replace 'https://herobots.net' with your actual domain
 $allowed_origin = 'https://herobots.net';
+$allowed_hosts = ['herobots.net', 'www.herobots.net'];
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
 
-// Allow requests from your domain or localhost for development
-if ($origin === $allowed_origin || $origin === 'http://localhost:5173' || $origin === 'http://localhost:3000') {
-    header("Access-Control-Allow-Origin: $origin");
+// Remove port from host if present (e.g., "herobots.net:443" -> "herobots.net")
+$host_without_port = preg_replace('/:\d+$/', '', $host);
+
+// Check if request is from same origin
+// For POST requests, browsers may send Origin header even for same-origin
+$is_same_origin = false;
+if (empty($origin)) {
+    // No Origin header = same-origin request
+    $is_same_origin = in_array($host_without_port, $allowed_hosts);
+} else {
+    // Check if Origin matches allowed origin or host
+    $parsed_origin = parse_url($origin);
+    $origin_host = isset($parsed_origin['host']) ? $parsed_origin['host'] : '';
+    $is_same_origin = ($origin === $allowed_origin) || in_array($origin_host, $allowed_hosts);
+}
+
+// Allow requests from:
+// 1. Same origin (matching host or origin)
+// 2. Allowed origin header
+// 3. Localhost for development
+if (
+    $is_same_origin ||
+    $origin === $allowed_origin ||
+    $origin === 'http://localhost:5173' ||
+    $origin === 'http://localhost:3000'
+) {
+    // Set CORS header for all allowed requests
+    if (!empty($origin)) {
+        header("Access-Control-Allow-Origin: $origin");
+    } elseif ($is_same_origin) {
+        // For same-origin requests without Origin, set based on current request
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        header("Access-Control-Allow-Origin: $protocol://$host_without_port");
+    }
 } else {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'Forbidden']);
@@ -35,9 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
+// Start session for CSRF token validation and rate limiting
+session_start();
+
 // Rate limiting: Simple IP-based rate limiting
 // In production, use Redis or a proper rate limiting library
-session_start();
 $ip = $_SERVER['REMOTE_ADDR'];
 $rate_limit_file = sys_get_temp_dir() . '/herobots_rate_limit_' . md5($ip) . '.txt';
 $rate_limit_window = 300; // 5 minutes
@@ -86,6 +121,16 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit();
 }
 
+// CSRF Token Validation (must be done after JSON parsing)
+if (
+    !isset($data['csrf_token']) || !isset($_SESSION['csrf_token']) ||
+    $data['csrf_token'] !== $_SESSION['csrf_token']
+) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Invalid security token. Please refresh the page and try again.']);
+    exit();
+}
+
 // Validate required fields
 if (empty($data['name']) || empty($data['email']) || empty($data['message'])) {
     http_response_code(400);
@@ -126,6 +171,18 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 255) {
 
 // Email configuration - Use environment variable if available, otherwise fallback
 $to = getenv('CONTACT_EMAIL') ?: 'info@herobots.net';
+
+// Validate recipient email
+if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
+    error_log("ERROR: Invalid recipient email address: $to");
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Email configuration error. Please contact the administrator.'
+    ]);
+    exit();
+}
+
 $email_subject = 'HeroBots Contact Form: ' . $subject;
 
 // Create email body
@@ -135,6 +192,9 @@ $email_body .= "Email: $email\n";
 $email_body .= "Phone: $phone\n";
 $email_body .= "Subject: $subject\n\n";
 $email_body .= "Message:\n$message\n";
+$email_body .= "\n---\n";
+$email_body .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
+$email_body .= "IP Address: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown') . "\n";
 
 // Secure email headers - Use fixed sender to prevent header injection
 // The user's email is only in the body, not in headers
@@ -143,19 +203,47 @@ $headers .= "Reply-To: $email\r\n"; // Safe because we validated it
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Priority: 1\r\n"; // High priority
+$headers .= "Importance: High\r\n";
+
+// Log email attempt
+error_log("Attempting to send contact form email to: $to from: $email");
 
 // Send email
+// Note: mail() may return true even if email isn't actually sent
+// This is a known limitation of PHP's mail() function
 $mail_sent = @mail($to, $email_subject, $email_body, $headers);
 
+// Get any errors that occurred
+$error = error_get_last();
+$error_message = $error ? $error['message'] : '';
+
 if ($mail_sent) {
+    // Log success (but note that mail() returning true doesn't guarantee delivery)
+    error_log("SUCCESS: Contact form email sent to: $to from: $email");
+    error_log("Email subject: $email_subject");
+    error_log("Note: mail() returned true, but email delivery is not guaranteed");
+
+    // Check if there were any warnings/errors despite mail() returning true
+    if ($error_message && stripos($error_message, 'mail') !== false) {
+        error_log("WARNING: Error detected despite mail() returning true: $error_message");
+    }
+
     http_response_code(200);
     echo json_encode([
         'success' => true,
         'message' => 'Thank you for your message! We will get back to you soon.'
     ]);
 } else {
-    // Log error but don't expose details to user
-    error_log("Failed to send contact form email from: $email");
+    // Log detailed error
+    error_log("FAILED: Contact form email failed to send to: $to from: $email");
+    error_log("Email subject: $email_subject");
+    if ($error_message) {
+        error_log("Error details: $error_message");
+    }
+    error_log("PHP mail() returned: false");
+    error_log("Check server mail configuration (sendmail/postfix/SMTP)");
+
     http_response_code(500);
     echo json_encode([
         'success' => false,

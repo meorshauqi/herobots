@@ -1,16 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import herobotsLogo from '../assets/logo/Herobots-Logo-2025.png';
 
 function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [csrfToken, setCsrfToken] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+
+  // Fetch CSRF token on component mount
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      try {
+        const response = await fetch('/get-csrf-token.php');
+        const data = await response.json();
+        if (data.success && data.token) {
+          setCsrfToken(data.token);
+        }
+      } catch (error) {
+        // Only log in development
+        if (import.meta.env.DEV) {
+          console.error('Error fetching CSRF token:', error);
+        }
+      }
+    };
+    fetchCsrfToken();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -30,7 +50,10 @@ function Footer() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          csrf_token: csrfToken
+        }),
       });
 
       const data = await response.json();
@@ -46,6 +69,12 @@ function Footer() {
           subject: '',
           message: ''
         });
+        // Refresh CSRF token after successful submission
+        const tokenResponse = await fetch('/get-csrf-token.php');
+        const tokenData = await tokenResponse.json();
+        if (tokenData.success && tokenData.token) {
+          setCsrfToken(tokenData.token);
+        }
       } else {
         setSubmitStatus({
           type: 'error',
@@ -69,8 +98,8 @@ function Footer() {
   return (
     <footer className="relative bg-black text-white mt-auto overflow-hidden">
       <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-r from-blue-400/30 via-purple-400/20 to-pink-400/30 blur-3xl"></div>
-      <div className="container mx-auto px-6 py-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 mb-8">
           {/* Left Column - Company Info */}
           <div>
             <div className="mb-8">

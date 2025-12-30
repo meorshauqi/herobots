@@ -4,6 +4,7 @@ function ContactUs() {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [csrfToken, setCsrfToken] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,6 +12,25 @@ function ContactUs() {
     subject: '',
     message: ''
   });
+
+  // Fetch CSRF token on component mount
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      try {
+        const response = await fetch('/get-csrf-token.php');
+        const data = await response.json();
+        if (data.success && data.token) {
+          setCsrfToken(data.token);
+        }
+      } catch (error) {
+        // Only log in development
+        if (import.meta.env.DEV) {
+          console.error('Error fetching CSRF token:', error);
+        }
+      }
+    };
+    fetchCsrfToken();
+  }, []);
 
   // Scroll-triggered animations using Intersection Observer
   useEffect(() => {
@@ -57,7 +77,10 @@ function ContactUs() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          csrf_token: csrfToken
+        }),
       });
 
       const data = await response.json();
@@ -67,7 +90,7 @@ function ContactUs() {
           type: 'success',
           message: data.message || 'Thank you for your message! We will get back to you soon.'
         });
-        // Reset form
+        // Reset form and refresh CSRF token
         setFormData({
           name: '',
           email: '',
@@ -75,6 +98,12 @@ function ContactUs() {
           subject: '',
           message: ''
         });
+        // Refresh CSRF token after successful submission
+        const tokenResponse = await fetch('/get-csrf-token.php');
+        const tokenData = await tokenResponse.json();
+        if (tokenData.success && tokenData.token) {
+          setCsrfToken(tokenData.token);
+        }
       } else {
         setSubmitStatus({
           type: 'error',
@@ -98,7 +127,7 @@ function ContactUs() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         {/* Background effects */}
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-600/30 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
@@ -112,12 +141,12 @@ function ContactUs() {
                 : 'opacity-0 translate-y-12 scale-95'
             }`}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-[#FACC15] via-[#DB2777] to-[#4F46E5] bg-clip-text text-transparent">
                 Get In Touch
               </span>
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8">
               Have a question or want to work together? We'd love to hear from you.
               <br />
               Send us a message and we'll respond as soon as possible.
@@ -129,7 +158,7 @@ function ContactUs() {
       {/* Main Contact Form Section */}
       <section className="relative py-12">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
             {/* Left Column - Additional Info */}
             <div 
               data-section-id="info-section"
@@ -141,7 +170,7 @@ function ContactUs() {
               style={{ transitionDelay: '0.3s' }}
             >
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                   Let's Build Something
                   <span className="block bg-gradient-to-r from-[#FACC15] to-[#DB2777] bg-clip-text text-transparent">
                     Amazing Together
@@ -287,6 +316,7 @@ function ContactUs() {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      maxLength={255}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300"
                       placeholder="john@example.com"
                     />
@@ -317,6 +347,7 @@ function ContactUs() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
+                      maxLength={200}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300"
                       placeholder="How can we help?"
                     />

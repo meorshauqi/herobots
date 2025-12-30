@@ -301,7 +301,7 @@ function HeroWorks() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-10 pb-24 overflow-hidden">
+      <section className="relative pt-16 sm:pt-20 md:pt-24 lg:pt-10 pb-16 sm:pb-20 md:pb-24 overflow-hidden">
         {/* Animated Grid Background */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute inset-0 heroworks-grid-bg" style={{
@@ -346,7 +346,7 @@ function HeroWorks() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* Hero Content - 2 Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="text-left relative">
                 {/* Decorative Line */}
@@ -359,12 +359,12 @@ function HeroWorks() {
                 </div>
 
                 <div className="animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                     <span className="bg-gradient-to-r from-[#943cff] via-[#3d43f0] to-[#9406cc] bg-clip-text text-transparent heroworks-gradient-text">
                       HeroWorks
                     </span>
                   </h1>
-                  <h2 className="text-2xl md:text-3xl text-white font-medium mb-6">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl text-white font-medium mb-6">
                     Complete HRMS Solution
                   </h2>
                 </div>
@@ -618,7 +618,7 @@ function HeroWorks() {
             }`}
           >
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                 Comprehensive <span className="bg-gradient-to-r from-[#9333EA] to-[#DB2777] bg-clip-text text-transparent">HRMS Modules</span>
               </h2>
               <p className="text-gray-400 text-lg animate-fadeInUp" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>Integrated solutions for every HR need</p>
@@ -758,7 +758,7 @@ function HeroWorks() {
             }`}
           >
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                 Powerful <span className="bg-gradient-to-r from-[#9333EA] to-[#DB2777] bg-clip-text text-transparent">Key Features</span>
               </h2>
               <p className="text-gray-400 text-lg animate-fadeInUp" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>Everything you need to manage your workforce effectively</p>
@@ -898,7 +898,7 @@ function HeroWorks() {
             }`}
           >
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                 Why Choose <span className="bg-gradient-to-r from-[#DB2777] to-[#8244ff] bg-clip-text text-transparent">HeroWorks</span>
               </h2>
               <p className="text-gray-400 text-lg animate-fadeInUp" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>Transform your HR operations with intelligent automation</p>
@@ -1109,21 +1109,21 @@ function HeroWorks() {
                   <span className="text-sm font-mono text-purple-400 uppercase tracking-wider">Get Started Today</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                   <span className="text-white">Ready to </span>
                   <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500 bg-clip-text text-transparent">Transform</span>
                   <br />
                   <span className="text-white">Your HR Operations?</span>
                 </h2>
                 
-                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
                   Experience the power of HeroWorks HRMS. Schedule a demo or contact us to learn more.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
                   <Link 
                     to="/contact" 
-                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                    className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-white font-semibold text-base sm:text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       Request a Demo
@@ -1147,8 +1147,8 @@ function HeroWorks() {
                 </div>
                 
                 {/* Trust Indicators */}
-                <div className="mt-12 pt-8 border-t border-white/10">
-                  <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+                <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10">
+                  <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm text-gray-500 px-4">
                     <div className="flex items-center gap-2">
                       <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>

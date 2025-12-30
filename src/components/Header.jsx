@@ -37,10 +37,6 @@ function Header() {
               Home
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
-            <Link to="/about" className={`text-white/90 hover:text-white transition-all duration-300 font-medium relative group ${location.pathname === '/about' ? 'text-white' : ''}`}>
-              About
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </Link>
             <div 
               className="relative group"
               onMouseEnter={() => setIsProductsDropdownOpen(true)}
@@ -100,6 +96,10 @@ function Header() {
             <Link to="/services" className={`text-white/90 hover:text-white transition-all duration-300 font-medium relative group ${location.pathname === '/services' ? 'text-white' : ''}`}>
               Services
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/services' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            </Link>
+            <Link to="/about" className={`text-white/90 hover:text-white transition-all duration-300 font-medium relative group ${location.pathname === '/about' ? 'text-white' : ''}`}>
+              About Us
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${location.pathname === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
             <Link to="/contact" className={`text-white/90 hover:text-white transition-all duration-300 font-medium relative group ${location.pathname === '/contact' ? 'text-white' : ''}`}>
               Contact

@@ -225,7 +225,7 @@ function SmartPatrolling() {
       }}></div>
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-24 overflow-hidden">
+      <section className="relative pt-16 sm:pt-20 md:pt-24 lg:pt-10 pb-16 sm:pb-20 md:pb-24 overflow-hidden">
         {/* Background effects */}
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-orange-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
@@ -233,7 +233,7 @@ function SmartPatrolling() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* Hero Content - 2 Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="text-left relative">
                 {/* Decorative Element */}
@@ -246,7 +246,7 @@ function SmartPatrolling() {
                     <span className="text-sm font-mono text-orange-400 uppercase tracking-wider">Intelligent Security</span>
                   </div>
                   
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 smartpatrol-gradient-text">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 smartpatrol-gradient-text">
                     <span className="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 bg-clip-text text-transparent">
                       Smart Patrolling
                     </span>
@@ -263,17 +263,17 @@ function SmartPatrolling() {
                 </p>
                 
                 {/* CTA Buttons */}
-                <div className="flex flex-wrap gap-4 mb-8 animate-fadeInUp" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 animate-fadeInUp" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
                   <Link 
                     to="/contact"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-lg font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25"
+                    className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-lg font-semibold text-base sm:text-lg text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25 text-center"
                   >
                     <span className="relative z-10">Get Started</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-yellow-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </Link>
                   <Link 
                     to="/contact"
-                    className="px-8 py-4 bg-white/5 border border-white/20 rounded-lg font-semibold text-white hover:bg-white/10 hover:border-orange-500/50 transition-all duration-300"
+                    className="px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-lg font-semibold text-base sm:text-lg text-white hover:bg-white/10 hover:border-orange-500/50 transition-all duration-300 text-center"
                   >
                     Watch Demo
                   </Link>
@@ -511,7 +511,7 @@ function SmartPatrolling() {
           >
             {/* Title */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
                 Maximize security coverage with<br />
                 <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
                   intelligent patrolling
@@ -871,7 +871,7 @@ function SmartPatrolling() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-orange-950/20 to-black"></div>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
@@ -879,7 +879,7 @@ function SmartPatrolling() {
         {/* Outer Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-orange-600/20 via-red-600/20 to-yellow-600/20 rounded-full blur-3xl"></div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div
             data-section-id="cta-section"
             className={`max-w-4xl mx-auto transition-all duration-1000 ${
@@ -888,7 +888,7 @@ function SmartPatrolling() {
                 : 'opacity-0 translate-y-10 scale-95'
             }`}
           >
-            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-orange-500/20 rounded-3xl p-12 md:p-16 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-orange-500/20 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 overflow-hidden">
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 w-20 h-20">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-transparent"></div>
@@ -922,21 +922,21 @@ function SmartPatrolling() {
                   <span className="text-sm font-mono text-orange-400 uppercase tracking-wider">Get Started Today</span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
                   <span className="text-white">Ready to </span>
                   <span className="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 bg-clip-text text-transparent">Revolutionize</span>
                   <br />
                   <span className="text-white">Your Security Operations?</span>
                 </h2>
                 
-                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
                   Experience the power of intelligent patrol management. Schedule a demo or contact us to learn more.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
                   <Link
                     to="/contact"
-                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25"
+                    className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 text-white font-semibold text-base sm:text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       Request a Demo
@@ -947,7 +947,7 @@ function SmartPatrolling() {
                   </Link>
                   <Link
                     to="/contact"
-                    className="group inline-flex items-center justify-center px-8 py-4 bg-white/5 border border-white/20 text-white font-semibold text-lg rounded-xl hover:bg-white/10 hover:border-orange-500/50 transition-all duration-300"
+                    className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 text-white font-semibold text-base sm:text-lg rounded-xl hover:bg-white/10 hover:border-orange-500/50 transition-all duration-300"
                   >
                     <span className="flex items-center gap-2">
                       Contact Sales
@@ -959,7 +959,7 @@ function SmartPatrolling() {
                 </div>
 
                 {/* Trust Indicators */}
-                <div className="flex flex-wrap justify-center gap-6 mt-10 text-sm text-gray-500">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs sm:text-sm text-gray-500 px-4">
                   {['Free Trial', '24/7 Support', 'Easy Setup', 'Offline Mode'].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2">
                       <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">

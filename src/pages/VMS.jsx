@@ -226,7 +226,7 @@ function VMS() {
       }}></div>
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-24 overflow-hidden">
+      <section className="relative pt-16 sm:pt-20 md:pt-24 lg:pt-10 pb-16 sm:pb-20 md:pb-24 overflow-hidden">
         {/* Background effects */}
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
@@ -234,7 +234,7 @@ function VMS() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* Hero Content - 2 Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="text-left relative">
                 {/* Decorative Element */}
@@ -247,14 +247,14 @@ function VMS() {
                     <span className="text-sm font-mono text-indigo-400 uppercase tracking-wider">Professional Check-In</span>
                   </div>
                   
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 vms-gradient-text">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 vms-gradient-text">
                     <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-violet-500 bg-clip-text text-transparent">
                       Visitor Management
                     </span>
                     <br />
                     <span className="text-white">System</span>
                   </h1>
-                  <h2 className="text-2xl md:text-3xl text-gray-300 font-medium mb-6">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium mb-6">
                     Professional First Impressions, Enhanced Security
                   </h2>
                 </div>
@@ -264,17 +264,17 @@ function VMS() {
                 </p>
                 
                 {/* CTA Buttons */}
-                <div className="flex flex-wrap gap-4 mb-8 animate-fadeInUp" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 animate-fadeInUp" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
                   <Link 
                     to="/contact"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
+                    className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg font-semibold text-base sm:text-lg text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25 text-center"
                   >
                     <span className="relative z-10">Get Started</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </Link>
                   <Link 
                     to="/contact"
-                    className="px-8 py-4 bg-white/5 border border-white/20 rounded-lg font-semibold text-white hover:bg-white/10 hover:border-indigo-500/50 transition-all duration-300"
+                    className="px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-lg font-semibold text-base sm:text-lg text-white hover:bg-white/10 hover:border-indigo-500/50 transition-all duration-300 text-center"
                   >
                     Watch Demo
                   </Link>
@@ -503,7 +503,7 @@ function VMS() {
                 <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
                 <span className="text-sm font-mono text-indigo-400 uppercase tracking-wider">Visitor Journey</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                 How It <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">Works</span>
               </h2>
               <p className="text-gray-400 text-lg">Seamless check-in experience in 4 simple steps</p>
@@ -592,7 +592,7 @@ function VMS() {
           >
             {/* Title */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
                 Elevate your visitor experience with<br />
                 <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
                   modern check-in solutions
@@ -944,7 +944,7 @@ function VMS() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-indigo-950/20 to-black"></div>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent"></div>
@@ -952,7 +952,7 @@ function VMS() {
         {/* Outer Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-indigo-600/20 via-purple-600/20 to-violet-600/20 rounded-full blur-3xl"></div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div
             data-section-id="cta-section"
             className={`max-w-4xl mx-auto transition-all duration-1000 ${
@@ -961,7 +961,7 @@ function VMS() {
                 : 'opacity-0 translate-y-10 scale-95'
             }`}
           >
-            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-indigo-500/20 rounded-3xl p-12 md:p-16 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-indigo-500/20 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 overflow-hidden">
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 w-20 h-20">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-400 to-transparent"></div>
@@ -995,21 +995,21 @@ function VMS() {
                   <span className="text-sm font-mono text-indigo-400 uppercase tracking-wider">Get Started Today</span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
                   <span className="text-white">Ready to </span>
                   <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-violet-500 bg-clip-text text-transparent">Transform</span>
                   <br />
                   <span className="text-white">Your Front Desk?</span>
                 </h2>
                 
-                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
                   Create a professional visitor experience that impresses guests and enhances security. Schedule a demo today.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
                   <Link
                     to="/contact"
-                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
+                    className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 text-white font-semibold text-base sm:text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       Request a Demo
@@ -1032,7 +1032,7 @@ function VMS() {
                 </div>
 
                 {/* Trust Indicators */}
-                <div className="flex flex-wrap justify-center gap-6 mt-10 text-sm text-gray-500">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs sm:text-sm text-gray-500 px-4">
                   {['Free Trial', '24/7 Support', 'Easy Setup', 'GDPR Compliant'].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2">
                       <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">

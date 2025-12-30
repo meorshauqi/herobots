@@ -107,30 +107,7 @@ function Products() {
       const scrollBottom = containerTop + containerHeight;
       const viewportTop = containerTop;
       const viewportBottom = containerTop + containerHeight;
-
-      // Check which product is at the top of the viewport
-      let topProductIndex = 0;
-      let topProductDistance = Infinity;
-
-      productRefs.current.forEach((ref, index) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          const containerRect = scrollContainer.getBoundingClientRect();
-          
-          // Get product position relative to scroll container
-          const productTop = rect.top - containerRect.top + containerTop;
-          const productBottom = productTop + rect.height;
-          
-          // Check if this product is visible at the top of viewport
-          if (productTop <= viewportTop + 50 && productBottom >= viewportTop) {
-            const distance = Math.abs(productTop - viewportTop);
-            if (distance < topProductDistance) {
-              topProductDistance = distance;
-              topProductIndex = index;
-            }
-          }
-        }
-      });
+      const viewportCenter = containerTop + containerHeight / 2;
 
       // If at the very top (scrollTop is 0 or very close), always use first product
       if (containerTop <= 5) {
@@ -145,8 +122,43 @@ function Products() {
         return;
       }
 
-      // Otherwise, use the product at the top of viewport
-      setCurrentProductIndex(topProductIndex);
+      // Find which product is most visible in the viewport
+      let activeIndex = 0;
+      let maxVisibleArea = 0;
+      let closestToCenter = Infinity;
+
+      productRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          const containerRect = scrollContainer.getBoundingClientRect();
+          
+          // Get product position relative to scroll container
+          const productTop = rect.top - containerRect.top + containerTop;
+          const productBottom = productTop + rect.height;
+          const productCenter = productTop + rect.height / 2;
+          
+          // Calculate visible area of this product in viewport
+          const visibleTop = Math.max(viewportTop, productTop);
+          const visibleBottom = Math.min(viewportBottom, productBottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          
+          // Calculate distance from viewport center
+          const distanceFromCenter = Math.abs(viewportCenter - productCenter);
+          
+          // Prefer product with most visible area
+          // If visible areas are similar (within 20px), prefer the one closer to center
+          if (visibleHeight > maxVisibleArea) {
+            maxVisibleArea = visibleHeight;
+            closestToCenter = distanceFromCenter;
+            activeIndex = index;
+          } else if (Math.abs(visibleHeight - maxVisibleArea) < 20 && distanceFromCenter < closestToCenter) {
+            closestToCenter = distanceFromCenter;
+            activeIndex = index;
+          }
+        }
+      });
+
+      setCurrentProductIndex(activeIndex);
     };
 
     scrollContainer.addEventListener('scroll', handleScroll);

@@ -296,7 +296,7 @@ function Products() {
       }}></div>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
+      <section className="relative pt-20 sm:pt-24 md:pt-32 pb-16 sm:pb-20 md:pb-24 overflow-hidden">
         {/* Background effects */}
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
@@ -317,12 +317,12 @@ function Products() {
 
               {/* Main Heading */}
               <div className="animate-fadeInDown" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 products-page-gradient-text">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 products-page-gradient-text">
                   <span className="bg-gradient-to-r from-[#FACC15] via-[#DB2777] to-[#4F46E5] bg-clip-text text-transparent">
                     Smart Solutions
                   </span>
                 </h1>
-                <h2 className="text-3xl md:text-4xl text-white font-medium">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-medium">
                   for Modern Challenges
                 </h2>
               </div>
@@ -654,7 +654,7 @@ function Products() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* CTA Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/20 to-black"></div>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
@@ -662,7 +662,7 @@ function Products() {
         {/* Outer Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-purple-600/20 via-pink-600/20 to-indigo-600/20 rounded-full blur-3xl"></div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div 
             data-section-id="cta-section"
             className={`relative max-w-4xl mx-auto transition-all duration-1000 ${
@@ -672,7 +672,7 @@ function Products() {
             }`}
           >
             {/* CTA Card */}
-            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 p-12 md:p-16 rounded-2xl overflow-hidden">
+            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-8 md:p-12 lg:p-16 rounded-2xl overflow-hidden">
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-purple-500/50 rounded-tl-2xl"></div>
               <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-pink-500/50 rounded-tr-2xl"></div>
@@ -697,20 +697,20 @@ function Products() {
                   <span className="text-sm font-mono text-pink-400 uppercase tracking-wider">Get Started Today</span>
                 </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
                   <span className="text-white">Ready to </span>
                   <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">Transform</span>
                   <span className="text-white"> Your Business?</span>
             </h2>
-                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
               Get in touch with our team to discuss how our products can help you achieve your goals
             </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
                   <Link 
                     to="/contact" 
-                    className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 rounded-lg"
+                    className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-semibold text-base sm:text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 rounded-lg"
                   >
               Contact Us Today
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -719,7 +719,7 @@ function Products() {
                   </Link>
                   <Link 
                     to="/services" 
-                    className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/20 text-white font-semibold text-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-lg"
+                    className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/20 text-white font-semibold text-base sm:text-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-lg"
                   >
                     Explore Services
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -729,7 +729,7 @@ function Products() {
                 </div>
 
                 {/* Trust Indicators */}
-                <div className="flex flex-wrap justify-center gap-6 mt-10 text-sm text-gray-500">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs sm:text-sm text-gray-500 px-4">
                   {['Free Consultation', 'Custom Solutions', '24/7 Support', 'Proven Results'].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2">
                       <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
