@@ -4,13 +4,13 @@ import './Hero.css';
 import logo from '../assets/logo/logo.png';
 import pbjv from '../assets/logo/pbjv.png';
 import baxtech from '../assets/logo/baxtech.webp';
-import aiSecurity2 from '../assets/services/ai-security-serveillance-2.png';
-import aiSecurity3 from '../assets/services/ai-security-serveillance-3.png';
-import aiSecurity4 from '../assets/services/ai-security-serveillance-4.png';
-import faceRecognition from '../assets/services/face-recognition.png';
-import fireSmokeDetection from '../assets/services/Fire-Smoke-Detection.png';
-import heroJaga from '../assets/services/HeroJaga.png';
-import lpr from '../assets/services/LPR.png';
+import newImage1 from '../assets/services/newImage-1.png';
+import newImage2 from '../assets/services/newImage-2.png';
+import newImage3 from '../assets/services/newImage-3.png';
+import newImage4 from '../assets/services/newImage-4.png';
+import newImage5 from '../assets/services/newImage-5.png';
+import newImage6 from '../assets/services/newImage-6.png';
+import newImage7 from '../assets/services/newImage-7.png';
 
 function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -37,13 +37,13 @@ function Hero() {
   ];
 
   const services = [
-    { name: "License Plate Recognition", image: lpr, description: "AI-powered vehicle tracking" },
-    { name: "AI Security Surveillance", image: aiSecurity2, description: "Smart monitoring solutions" },
-    { name: "PPE Detection", image: aiSecurity3, description: "Intelligent security systems" },
-    { name: "People Counting", image: aiSecurity4, description: "Real-time detection" },
-    { name: "Face Recognition", image: faceRecognition, description: "Biometric identification" },
-    { name: "Fire & Smoke Detection", image: fireSmokeDetection, description: "Smart safety systems" },
-    { name: "HeroJaga Mobile Security", image: heroJaga, description: "Next-gen mobile security app" },
+    { name: "AI Security Solutions", image: newImage1, description: "Advanced security technology" },
+    { name: "Smart Surveillance", image: newImage2, description: "Intelligent monitoring systems" },
+    { name: "AI-Powered Detection", image: newImage3, description: "Real-time threat detection" },
+    { name: "Biometric Recognition", image: newImage4, description: "Secure identification" },
+    { name: "Visitor Management", image: newImage5, description: "Smart access control" },
+    { name: "Security Monitoring", image: newImage6, description: "24/7 surveillance" },
+    { name: "Mobile Security", image: newImage7, description: "Advanced mobile solutions" },
   ];
 
   // Auto-rotate images every 3 seconds - start after initial delay
