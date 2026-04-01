@@ -1,12 +1,12 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-  
+
 # Don't rewrite files or directories
-RewriteCond % { REQUEST_FILENAME } !-f
-RewriteCond % { REQUEST_FILENAME } !-d
-RewriteCond % { REQUEST_FILENAME } !-l
-  
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
 # Rewrite everything else to index.html to support React Router
 RewriteRule . /index.html [L]
 </IfModule>
@@ -17,19 +17,19 @@ RewriteRule . /index.html [L]
 # Allows: Google Fonts, local resources, inline styles/scripts (required for React/Vite)
 # Blocks: External scripts, unauthorized resources, XSS attacks
 Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
-  
+
 # Prevent MIME type sniffing
 Header set X-Content-Type-Options "nosniff"
-  
+
 # Prevent clickjacking
 Header set X-Frame-Options "DENY"
-  
+
 # XSS Protection
 Header set X-XSS-Protection "1; mode=block"
-  
+
 # Referrer Policy
 Header set Referrer-Policy "strict-origin-when-cross-origin"
-  
+
 # Remove server signature
 Header unset Server
 Header unset X-Powered-By
@@ -38,9 +38,9 @@ Header unset X-Powered-By
 # Force HTTPS - Redirect all HTTP traffic to HTTPS
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond % { HTTPS } off
-RewriteCond % { HTTP_HOST } ^(www\.)?herobots\.net$ [NC]
-RewriteRule ^(.*)$ https://% { HTTP_HOST }% { REQUEST_URI } [L, R=301]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^(www\.)?herobots\.net$ [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # Compression for better performance
@@ -59,4 +59,3 @@ ExpiresByType image/webp "access plus 1 year"
 ExpiresByType text/css "access plus 1 month"
 ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
-
