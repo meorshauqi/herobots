@@ -271,12 +271,12 @@ function Footer() {
         <div className="border-t border-gray-700/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              &copy; 2025 HeroBots. All rights reserved.
+              &copy; 2026 HeroBots. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors duration-300">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors duration-300">Cookie Policy</a>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors duration-300">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="hover:text-white transition-colors duration-300">Terms of Service</Link>
+              <Link to="/cookie-policy" className="hover:text-white transition-colors duration-300">Cookie Policy</Link>
             </div>
           </div>
         </div>

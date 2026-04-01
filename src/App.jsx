@@ -15,6 +15,9 @@ import AISecurity from './pages/AISecurity'
 import LPR from './pages/LPR'
 import SmartPatrolling from './pages/SmartPatrolling'
 import VMS from './pages/VMS'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
+import CookiePolicy from './pages/CookiePolicy'
 
 function AppContent() {
   const [loading, setLoading] = useState(false)
@@ -57,6 +60,9 @@ function AppContent() {
         <Route path="/products/smart-patrolling" element={<SmartPatrolling />} />
         <Route path="/products/visitor-management" element={<VMS />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
       </Routes>
       <Footer />
     </div>
